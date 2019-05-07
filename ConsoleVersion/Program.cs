@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.PerformanceData;
 using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -9,29 +10,117 @@ namespace ConsoleVersion
 {
     internal class Program
     {
+        private static string[] _loginMenu = {
+            "Sign in", "Sign up", "Exit"
+        };
+
+        private static string[] _vocabularyMenu =
+        {
+            "Create row", "Show vocabulary", "Change row", "Delete row", "Delete vocabulary", "Exit"
+        };
+        
         private static UserContext _userContext = new UserContext();
         private static VocabularyContext _vocabularyContext = new VocabularyContext();
         public static void Main(string[] args)
         {
-            //User user = createUser();
-            //User user = new User {Nickname = "hunterlan", Password = "hunterlan", Email = "hunterlan@gmail.com"};
-
-            //User user = _userContext.Users.FirstOrDefault(user => user.Nickname == "hunterlan");
-
-            var user = _userContext.Users
-                .FirstOrDefault(u => u.Nickname == "hunterlan");
-            
-            Vocabulary vocabulary = new Vocabulary
-            {
-                ForeignWord = "hello", 
-                Transcription = "",
-                LocalWord = "привет",
-                UserID = user.Id
-            };
-            //Operations.AddUser(_userContext, user);
-            _vocabularyContext.Vocabularies.Add(vocabulary);
-            _vocabularyContext.SaveChanges();
+            Menu();
         }
+
+        public static void Menu()
+        {
+            do
+            {
+                Console.Clear();
+                string buff; 
+                byte choose = 0;
+                
+                for (int i = 0; i < _loginMenu.Length; i++)
+                {
+                    Console.WriteLine("{0}. {1}", i+1, _loginMenu[i]);
+                }
+
+                buff = Console.ReadLine();
+                if (!Byte.TryParse(buff, out choose))
+                    continue;
+
+                if (choose == 1)
+                {
+                    User currentUser;
+                    do
+                    {
+                        Console.Clear();
+                        currentUser = new User();
+                        Console.Write("Nickname: ");
+                        currentUser.Nickname = Console.ReadLine();
+                        Console.Write("\nPassword: ");
+                        currentUser.Password = Console.ReadLine();
+
+                        currentUser = Operations.Compare(_userContext, currentUser);
+                        if (currentUser == null)
+                            Console.WriteLine("Nickname or password is wrong");
+                        else
+                            break;
+                    } while (true);
+
+                    OpsMenu(currentUser);
+                }
+                else if (choose == 2)
+                {
+                    User currentUser = createUser();
+                    Operations.AddUser(_userContext, currentUser);
+                    OpsMenu(currentUser);
+                    break;
+                }
+                else if(choose == 3)
+                    break;
+                
+            } while (true);
+        }
+
+        public static void OpsMenu(User currentUser)
+        {
+            do
+            {
+                Console.Clear();
+                
+                string buff; 
+                byte choose = 0;
+                
+                for (int i = 0; i < _vocabularyMenu.Length; i++)
+                {
+                    Console.WriteLine("{0}. {1}", i+1, _vocabularyMenu[i]);
+                }
+
+                buff = Console.ReadLine();
+                if (!Byte.TryParse(buff, out choose))
+                    continue;
+                if (choose == 1)
+                {
+                    
+                }
+                else if (choose == 2)
+                {
+                    
+                }
+                else if(choose == 3)
+                {
+                    
+                }
+                else if(choose == 4)
+                {
+                    
+                }
+                else if(choose == 5)
+                {
+                    
+                }
+                else if(choose == 6)
+                {
+                    break;
+                }
+            } while (true);
+        }
+        
 
         public static User createUser()
         {
@@ -121,4 +210,6 @@ namespace ConsoleVersion
             return row;
         }
     }
+    
+    
 }

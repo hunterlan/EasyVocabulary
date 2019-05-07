@@ -69,11 +69,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helper\Operations.cs" />
     <Compile Include="Helper\UserContext.cs" />
     <Compile Include="Helper\VocabularyContext.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Vocabulary.cs" />
-    <Compile Include="Operations.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
