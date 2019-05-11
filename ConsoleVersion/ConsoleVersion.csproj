@@ -69,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helper\Exceptions.cs" />
     <Compile Include="Helper\Operations.cs" />
     <Compile Include="Helper\UserContext.cs" />
     <Compile Include="Helper\VocabularyContext.cs" />

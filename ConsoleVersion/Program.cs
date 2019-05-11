@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Diagnostics.PerformanceData;
 using System.Diagnostics.Tracing;
 using System.Linq;
@@ -23,10 +24,10 @@ namespace ConsoleVersion
         private static VocabularyContext _vocabularyContext = new VocabularyContext();
         public static void Main(string[] args)
         {
-            Menu();
+            LoginMenu();
         }
 
-        public static void Menu()
+        public static void LoginMenu()
         {
             do
             {
@@ -57,7 +58,13 @@ namespace ConsoleVersion
 
                         currentUser = Operations.Compare(_userContext, currentUser);
                         if (currentUser == null)
-                            Console.WriteLine("Nickname or password is wrong");
+                        {
+                            if (Exceptions.IsError != 1)
+                            {
+                                Console.WriteLine("Nickname or password is wrong");   
+                            }
+                            Console.ReadKey();
+                        }
                         else
                             break;
                     } while (true);
@@ -67,7 +74,7 @@ namespace ConsoleVersion
                 else if (choose == 2)
                 {
                     User currentUser = createUser();
-                    Operations.AddUser(_userContext, currentUser);
+                    Operations.AddUser(_userContext, ref currentUser);
                     OpsMenu(currentUser);
                     break;
                 }
@@ -96,11 +103,29 @@ namespace ConsoleVersion
                     continue;
                 if (choose == 1)
                 {
-                    
+                    Vocabulary row = createRow(currentUser);
+                    Operations.AddVocabulary(_vocabularyContext, row);
+                    Console.WriteLine("Row successfully added.");
+                    Console.ReadKey();
                 }
                 else if (choose == 2)
                 {
-                    
+                    Console.WriteLine("Foreign Word\tTranscription\tLocal word");
+                    var userVoc = _vocabularyContext.Vocabularies.ToList();
+                    foreach (var row in userVoc)
+                    {
+                        if (row.UserID == currentUser.Id)
+                        {
+                            if(row.Transcription.Length == 0)
+                                Console.WriteLine("{0}\t\t{1}\t\t{2}", row.ForeignWord, "-", row.LocalWord);
+                            else
+                                Console.WriteLine("{0}\t\t{1}\t\t{2}", row.ForeignWord, row.Transcription, row.LocalWord);
+                        }
+                        
+                            
+                    }
+
+                    Console.ReadKey();
                 }
                 else if(choose == 3)
                 {
@@ -174,7 +199,7 @@ namespace ConsoleVersion
             return newUser;
         }
 
-        public static Vocabulary createRow()
+        public static Vocabulary createRow(User currentUser)
         {
             Vocabulary row = new Vocabulary();
             string foreignWord = null, localWord = null, transcription = null;
@@ -203,6 +228,7 @@ namespace ConsoleVersion
                     Console.WriteLine("Line is empty.");
             } while (!go);
 
+            row.UserID = currentUser.Id;
             row.ForeignWord = foreignWord;
             row.Transcription = transcription;
             row.LocalWord = localWord;

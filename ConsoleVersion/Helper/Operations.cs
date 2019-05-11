@@ -9,29 +9,51 @@ namespace ConsoleVersion
 {
     public static class Operations
     {
-
         public static User Compare(UserContext userContext,User user)
         {
-            User result = userContext.Users.Single(d=>d.Nickname==user.Nickname);
-            
-            if (result != null)
+            User result = null;
+            try
             {
-                if (SecurePasswordHasher.Verify(user.Password, result.Password))
-                    result = null;
+                result = userContext.Users.Single(d=>d.Nickname==user.Nickname);
+                
+                if (result != null)
+                {
+                    if (!SecurePasswordHasher.Verify(user.Password, result.Password))
+                        result = null;
+                }
             }
+            catch (Exception e)
+            {
+                Exceptions.Catching(e);
+            }
+            
             return result;
         }
-        public static void AddUser(UserContext userContext, User user)
+        public static void AddUser(UserContext userContext, ref User user)
         {
-            user.Password = SecurePasswordHasher.Hash(user.Password);
-            userContext.Users.Add(user);
-            userContext.SaveChanges();
+            try
+            {
+                user.Password = SecurePasswordHasher.Hash(user.Password);
+                user = userContext.Users.Add(user);
+                userContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Exceptions.Catching(e);
+            }
         }
 
         public static void UpdateUser(UserContext userContext, User changedUser)
         {
-            userContext.Users.AddOrUpdate(changedUser);
-            userContext.SaveChanges();
+            try
+            {
+                userContext.Users.AddOrUpdate(changedUser);
+                userContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Exceptions.Catching(e);
+            }
         }
 
         public static void RemoveUser(UserContext userContext, VocabularyContext vocabularyContext, User user)
@@ -43,20 +65,42 @@ namespace ConsoleVersion
 
         public static void AddVocabulary(VocabularyContext vocabularyContext, Vocabulary row)
         {
-            vocabularyContext.Vocabularies.Add(row);
-            vocabularyContext.SaveChanges();
+            try
+            {
+                vocabularyContext.Vocabularies.Add(row);
+                vocabularyContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Exceptions.Catching(e);
+            } 
         }
 
         public static void UpdateRow(VocabularyContext vocabularyContext, Vocabulary newRow)
         {
-            vocabularyContext.Vocabularies.AddOrUpdate(newRow);
-            vocabularyContext.SaveChanges();
+            try
+            {
+                vocabularyContext.Vocabularies.AddOrUpdate(newRow);
+                vocabularyContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Exceptions.Catching(e);
+            }
         }
 
         public static void RemoveRow(VocabularyContext vocabularyContext, Vocabulary row)
         {
-            vocabularyContext.Vocabularies.Remove(row);
-            vocabularyContext.SaveChanges();
+            try
+            {
+                vocabularyContext.Vocabularies.Remove(row);
+                vocabularyContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Exceptions.Catching(e);
+            }
+
         }
     }
     public static class SecurePasswordHasher
