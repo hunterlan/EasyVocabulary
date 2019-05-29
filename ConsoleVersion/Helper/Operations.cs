@@ -58,9 +58,17 @@ namespace ConsoleVersion
 
         public static void RemoveUser(UserContext userContext, VocabularyContext vocabularyContext, User user)
         {
-            //Think, how to remove all data's user in vocabulary
-            userContext.Users.Remove(user);
-            userContext.SaveChanges();
+            try
+            {
+                RemoveVocabulary(vocabularyContext, user);
+                vocabularyContext.SaveChanges();
+                userContext.Users.Remove(user);
+                userContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Exceptions.Catching(e);
+            }
         }
 
         public static void AddVocabulary(VocabularyContext vocabularyContext, Vocabulary row)
@@ -100,7 +108,23 @@ namespace ConsoleVersion
             {
                 Exceptions.Catching(e);
             }
+        }
 
+        public static void RemoveVocabulary(VocabularyContext vocabularyContext, User user)
+        {
+            try
+            {
+                var rows = vocabularyContext.Vocabularies.ToList();
+                foreach (var row in rows)
+                {
+                    if (row.UserID == user.Id)
+                        vocabularyContext.Vocabularies.Remove(row);
+                }
+            }
+            catch (Exception e)
+            {
+                Exceptions.Catching(e);
+            }
         }
     }
     public static class SecurePasswordHasher
