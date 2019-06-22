@@ -8,7 +8,10 @@ namespace ConsoleVersion.Helper
 
         public static void Catching(Exception e)
         {
-            Console.WriteLine(e.Message);
+            if (e.HResult == -2146233087)
+                Console.WriteLine("Can't connect to the server.");
+            else
+                Console.WriteLine(e.Message);
             IsError = 1;
         }
     }
