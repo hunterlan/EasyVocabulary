@@ -36,8 +36,7 @@ namespace ConsoleVersion.View
         {
             do
             {
-                Exceptions.IsError = 0;
-                Console.Clear();
+                UsefulFunctions.PrepareForView();
                 string buff;
                 byte chooseParagraph;
 
@@ -55,7 +54,7 @@ namespace ConsoleVersion.View
                     User currentUser;
                     do
                     {
-                        Console.Clear();
+                        UsefulFunctions.PrepareForView();
                         currentUser = new User();
 
                         Console.Write("Nickname: ");
@@ -63,7 +62,7 @@ namespace ConsoleVersion.View
                         Console.Write("\nPassword: ");
                         currentUser.Password = Console.ReadLine();
 
-                        currentUser = UserController.Compare(_userContext, currentUser);
+                        currentUser = UserController.CompareUser(_userContext, currentUser);
                         if (currentUser == null)
                         {
                             if (Exceptions.IsError != 1)
@@ -95,7 +94,7 @@ namespace ConsoleVersion.View
         {
             do
             {
-                Console.Clear();
+                UsefulFunctions.PrepareForView();
 
                 string buff;
                 byte chooseOps;
@@ -139,8 +138,8 @@ namespace ConsoleVersion.View
                     string text = "Choose the key for find word: \n" +
                                   "1. Foreign word;\n2. Transcription;\n3. Local word";
 
-                    byte editChoose = Choose(text, 1, 3);
-                    key = GetKey();
+                    byte editChoose = UsefulFunctions.Choose(text, 1, 3);
+                    key = UsefulFunctions.GetKey();
 
                     try
                     {
@@ -182,9 +181,9 @@ namespace ConsoleVersion.View
                 {
                     string text = "Choose the key for delete word: \n" +
                                   "1. Foreign word;\n2. Transcription;\n3. Local word";
-                    byte deleteChoose = Choose(text, 1, 3);
+                    byte deleteChoose = UsefulFunctions.Choose(text, 1, 3);
 
-                    string key = GetKey();
+                    string key = UsefulFunctions.GetKey();
                     try
                     {
                         Vocabulary foundRow = VocabularyController.FindRow(key, deleteChoose, _vocabularyContext);
@@ -249,7 +248,7 @@ namespace ConsoleVersion.View
                             checkPassword.Nickname = currentUser.Nickname;
                             Console.Write("Enter the password: ");
                             checkPassword.Password = Console.ReadLine();
-                            if (UserController.Compare(_userContext, checkPassword) == null)
+                            if (UserController.CompareUser(_userContext, checkPassword) == null)
                                 continue;
                             //TO-DO: ask user about what it would like change 
                         }
@@ -260,7 +259,7 @@ namespace ConsoleVersion.View
                             checkPassword.Nickname = currentUser.Nickname;
                             Console.Write("Enter the password: ");
                             checkPassword.Password = Console.ReadLine();
-                            if (UserController.Compare(_userContext, checkPassword) == null)
+                            if (UserController.CompareUser(_userContext, checkPassword) == null)
                                 continue;
                             UserController.RemoveUser(_userContext, _vocabularyContext, currentUser);
                             currentUser = null;
@@ -279,39 +278,6 @@ namespace ConsoleVersion.View
             } while (!exit);
 
             return currentUser;
-        }
-
-
-        public static byte Choose(string text, byte min, byte max)
-        {
-            string buffChoose;
-            byte userChoose;
-            do
-            {
-                Console.WriteLine(text);
-                buffChoose = Console.ReadLine();
-                if (!Byte.TryParse(buffChoose, out userChoose) || userChoose < min || userChoose > max)
-                    continue;
-                break;
-            } while (true);
-
-            return userChoose;
-        }
-
-        public static string GetKey()
-        {
-            string key;
-
-            do
-            {
-                Console.Write("Write the key: ");
-                key = Console.ReadLine();
-                if (key.Length == 0)
-                    continue;
-                break;
-            } while (true);
-
-            return key;
         }
 
         public static User createUser()

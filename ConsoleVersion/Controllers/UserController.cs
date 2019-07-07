@@ -8,7 +8,7 @@ namespace ConsoleVersion.Controllers
 {
     class UserController
     {
-        public static User Compare(UserContext userContext, User user)
+        public static User CompareUser(UserContext userContext, User user)
         {
             User result = null;
             try
