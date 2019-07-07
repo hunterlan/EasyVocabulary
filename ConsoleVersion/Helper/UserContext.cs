@@ -12,7 +12,5 @@ namespace ConsoleVersion.Helper
         { }
         
         public DbSet<User> Users { get; set; }
-
-        public static bool isOnline { get; set; }
     }
 }

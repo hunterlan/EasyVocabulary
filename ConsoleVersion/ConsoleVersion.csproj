@@ -69,16 +69,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Helper\Exceptions.cs" />
     <Compile Include="Controllers\VocabularyController.cs" />
     <Compile Include="Helper\SecurePasswordHasher.cs" />
-    <Compile Include="Helper\UsefulFunctions.cs" />
     <Compile Include="Helper\UserContext.cs" />
     <Compile Include="Helper\VocabularyContext.cs" />
-    <Compile Include="Models\RecordTournTable.cs" />
-    <Compile Include="Models\SettingGame.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Vocabulary.cs" />
     <Compile Include="Program.cs" />
