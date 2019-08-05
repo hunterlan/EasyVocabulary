@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
-using System.Diagnostics.PerformanceData;
-using System.Diagnostics.Tracing;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using ConsoleVersion.Controllers;
 using ConsoleVersion.Helper;
@@ -19,12 +15,18 @@ namespace ConsoleVersion.View
 
         private static string[] _vocabularyMenu =
         {
-            "Create row", "Show vocabulary", "Change row", "Delete row", "Delete vocabulary", "Settings", "Exit"
+            "Create row", "Show vocabulary", "Change row", "Delete row", "Delete vocabulary", "Learn words",
+            "Settings", "Exit"
         };
 
         private static string[] _settingMenu =
         {
             "Show current user", "Change data", "Delete current user", "Return"
+        };
+
+        private static string[] _gameMenu =
+        {
+            "Write transcription", "Tournament table", "Setting", "Return to main menu"
         };
 
         private static readonly int EMPTY = 0;
@@ -37,17 +39,7 @@ namespace ConsoleVersion.View
             do
             {
                 UsefulFunctions.PrepareForView();
-                string buff;
-                byte chooseParagraph;
-
-                for (int i = 0; i < _loginMenu.Length; i++)
-                {
-                    Console.WriteLine("{0}. {1}", i + 1, _loginMenu[i]);
-                }
-
-                buff = Console.ReadLine();
-                if (!Byte.TryParse(buff, out chooseParagraph))
-                    continue;
+                byte chooseParagraph = UsefulFunctions.Choose(_loginMenu);
 
                 if (chooseParagraph == 1)
                 {
@@ -66,9 +58,10 @@ namespace ConsoleVersion.View
                         if (currentUser == null)
                         {
                             if (Exceptions.IsError != 1)
-                            {
                                 Console.WriteLine("Nickname or password is wrong");
-                            }
+                            else
+                                Console.WriteLine(Exceptions.ErrorMessage);
+                            
                             Console.ReadKey();
                         }
                         else
@@ -206,13 +199,17 @@ namespace ConsoleVersion.View
                         VocabularyController.RemoveVocabulary(_vocabularyContext, currentUser);
 
                 }
-                else if (chooseOps == 6)
+                else if(chooseOps == 6)
+                {
+                    GameMenu();
+                }
+                else if (chooseOps == 7)
                 {
                     currentUser = SettingMenu(currentUser);
                     if (currentUser == null)
                         break;
                 }
-                else if (chooseOps == 7)
+                else if (chooseOps == 8)
                 {
                     break;
                 }
@@ -226,14 +223,7 @@ namespace ConsoleVersion.View
             {
                 Console.Clear();
 
-                byte settingChoose = 0;
-
-                for (int i = 0; i < _settingMenu.Length; i++)
-                    Console.WriteLine("{0}: {1}", i + 1, _settingMenu[i]);
-
-                string userChoose = Console.ReadLine();
-                if (!Byte.TryParse(userChoose, out settingChoose) || settingChoose > _settingMenu.Length)
-                    continue;
+                byte settingChoose = UsefulFunctions.Choose(_settingMenu);
 
                 switch (settingChoose)
                 {
@@ -278,6 +268,30 @@ namespace ConsoleVersion.View
             } while (!exit);
 
             return currentUser;
+        }
+
+        static void GameMenu()
+        {
+            byte gameChoose = UsefulFunctions.Choose(_gameMenu);
+            switch(gameChoose)
+            {
+                case 1:
+                {
+
+                }break;
+                case 2:
+                {
+
+                }break;
+                case 3:
+                {
+
+                }break;
+                case 4:
+                    break;
+                default:
+                    break;
+            }
         }
 
         public static User createUser()
@@ -328,6 +342,14 @@ namespace ConsoleVersion.View
 
             newUser.Email = email;
             return newUser;
+        }
+
+        public string EnterTranslate(string word)
+        {
+            string data;
+            Console.Write("Write the translate for {0}: ", word);
+            data = Console.ReadLine();
+            return data;
         }
 
     }

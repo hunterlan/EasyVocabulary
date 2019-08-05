@@ -6,7 +6,7 @@ using ConsoleVersion.Models;
 
 namespace ConsoleVersion.Controllers
 {
-    class UserController
+    public class UserController
     {
         public static User CompareUser(UserContext userContext, User user)
         {
