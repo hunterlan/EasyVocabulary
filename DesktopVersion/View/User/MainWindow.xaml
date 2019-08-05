@@ -12,7 +12,9 @@
         <TextBox x:Name="BoxLogin" HorizontalAlignment="Left" Height="23" Margin="20,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="127"/>
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,85,0,0" Text="Your password" />
         <PasswordBox x:Name="BoxPassword" HorizontalAlignment="Left" Margin="20,106,0,0" VerticalAlignment="Top" Width="127" Height="23"/>
-        <TextBlock HorizontalAlignment="Left" Margin="20,131,0,0" TextWrapping="Wrap" Text="Don't have an account?" VerticalAlignment="Top" Width="127"/>
+        <TextBlock HorizontalAlignment="Left" Margin="20,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="127">
+            <Hyperlink NavigateUri="1" Click="Hyperlink_Click">Don't have an account?</Hyperlink>
+        </TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="20,152,0,0" TextWrapping="Wrap" Text="Forget password?" VerticalAlignment="Top" Width="127"/>
 
     </Grid>

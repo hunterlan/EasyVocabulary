@@ -37,9 +37,13 @@ namespace DesktopVersion
             {
                 Table vocabularyWindow = new Table(currentUser);
                 vocabularyWindow.Show();
-                this.Close();
-                //close this window. Create new.
+                Close();
             }
+        }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
