@@ -5,9 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopVersion"
         mc:Ignorable="d"
-        Title="Table" Height="450" Width="800">
+        Title="Table" Height="506.634" Width="363">
     <Grid>
-        <DataGrid x:Name="VocabularyView" HorizontalAlignment="Left" Height="411" VerticalAlignment="Top" Width="793" Margin="0,10,0,-0.333"/>
-
+        <Menu Margin="0,0,0.333,-0.333">
+            <MenuItem x:Name="Menus" Header="Меню" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <MenuItem x:Name="Settings" Header="Настройки"/>
+                <MenuItem x:Name="ExitAcc" Header="Выход из аккаунта" Click="ExitAcc_Click" />
+            </MenuItem>
+        </Menu>
+        <DataGrid x:Name="TableView" Margin="0,24,0,0.333" AutoGenerateColumns="True"/>
     </Grid>
 </Window>

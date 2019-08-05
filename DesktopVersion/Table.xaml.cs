@@ -31,22 +31,31 @@ namespace DesktopVersion
     {
         User currentUser;
         private static VocabularyContext _vocabularyContext;
-        //TODO: Убрать ID и UserID
         //TODO: Фиксировать изменения в таблице
         public Table(User sessionUser)
         {
             InitializeComponent();
             currentUser = sessionUser;
             _vocabularyContext = new VocabularyContext();
-            foreach (Vocabulary row in _vocabularyContext.Vocabularies.ToList())
+            List<VocabularyView> rows = new List<VocabularyView>();
+            foreach(var row in _vocabularyContext.Vocabularies.ToList())
             {
-                VocabularyView.ItemsSource = row.ForeignWord;
-                VocabularyView.ItemsSource += row.Transcription;
-                VocabularyView.ItemsSource += row.LocalWord;
-                break;
+                rows.Add(new VocabularyView
+                {
+                    ForeignWord = row.ForeignWord,
+                    Transcription = row.Transcription,
+                    LocalWord = row.LocalWord
+                });
             }
 
+            TableView.ItemsSource = rows;
+        }
 
+        private void ExitAcc_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow window = new MainWindow();
+            window.Show();
+            Close();
         }
     }
 }
