@@ -9,7 +9,7 @@ This project was created to help people improve own lexicon.
 
 - For console version: C# + MySQL
 
-- For desktop version (in future): C# + WPF + MySQL
+- For desktop version (WIP): C# + WPF + MySQL
 
 - For website version (in future): C# + ASP.NET  + MySQL
 
