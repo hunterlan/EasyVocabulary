@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 using ConsoleVersion.Controllers;
 using ConsoleVersion.Helper;
 using ConsoleVersion.Models;
@@ -43,7 +45,14 @@ namespace DesktopVersion
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
-
+            Registration registrationWindow = new Registration();
+            if(registrationWindow.ShowDialog() == true)
+            {
+                UserController.AddUser(_userContext, ref registrationWindow.user);
+                Table vocabularyWindow = new Table(registrationWindow.user);
+                vocabularyWindow.Show();
+                Close();
+            }
         }
     }
 }

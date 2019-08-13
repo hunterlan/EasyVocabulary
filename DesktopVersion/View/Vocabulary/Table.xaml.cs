@@ -37,15 +37,21 @@ namespace DesktopVersion
             InitializeComponent();
             currentUser = sessionUser;
             _vocabularyContext = new VocabularyContext();
+            LoadGrid();
+        }
+
+        private void LoadGrid()
+        {
             List<VocabularyView> rows = new List<VocabularyView>();
-            foreach(var row in _vocabularyContext.Vocabularies.ToList())
+            foreach (var row in _vocabularyContext.Vocabularies.ToList())
             {
-                rows.Add(new VocabularyView
-                {
-                    ForeignWord = row.ForeignWord,
-                    Transcription = row.Transcription,
-                    LocalWord = row.LocalWord
-                });
+                if (row.UserID == currentUser.Id)
+                    rows.Add(new VocabularyView
+                    {
+                        ForeignWord = row.ForeignWord,
+                        Transcription = row.Transcription,
+                        LocalWord = row.LocalWord
+                    });
             }
 
             TableView.ItemsSource = rows;
