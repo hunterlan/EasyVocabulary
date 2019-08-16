@@ -69,6 +69,7 @@ namespace DesktopVersion
                 MessageBox.Show("Строка добавлена успешно!");
             else
                 MessageBox.Show("Операция отменена");
+            LoadGrid();
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)

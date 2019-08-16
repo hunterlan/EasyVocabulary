@@ -103,7 +103,7 @@ namespace ConsoleVersion.View
 
                 if (chooseOps == 1)
                 {
-                    Vocabulary row = VocabularyController.createRow(currentUser);
+                    Vocabulary row = createRow(currentUser);
                     VocabularyController.AddRow(_vocabularyContext, row);
                     Console.WriteLine("Row successfully added.");
                     Console.ReadKey();
@@ -350,6 +350,44 @@ namespace ConsoleVersion.View
             Console.Write("Write the translate for {0}: ", word);
             data = Console.ReadLine();
             return data;
+        }
+
+        public static Vocabulary createRow(User currentUser)
+        {
+            Vocabulary row = new Vocabulary();
+            string foreignWord, localWord, transcription;
+            bool go = false;
+
+            do
+            {
+                Console.WriteLine("Write foreign word.");
+                foreignWord = Console.ReadLine();
+                if (foreignWord != null)
+                    go = true;
+                else
+                    Console.WriteLine("Line is empty.");
+            } while (!go);
+            go = false;
+
+            Console.WriteLine("Write transcription (optionally)");
+            transcription = Console.ReadLine();
+
+            do
+            {
+                Console.WriteLine("Write local word.");
+                localWord = Console.ReadLine();
+                if (localWord != null)
+                    go = true;
+                else
+                    Console.WriteLine("Line is empty.");
+            } while (!go);
+
+            row.UserID = currentUser.Id;
+            row.ForeignWord = foreignWord;
+            row.Transcription = transcription;
+            row.LocalWord = localWord;
+
+            return row;
         }
 
     }
