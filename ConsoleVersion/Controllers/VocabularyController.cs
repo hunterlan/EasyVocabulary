@@ -9,7 +9,7 @@ namespace ConsoleVersion
 {
     public static class VocabularyController
     {
-        public static void AddVocabulary(VocabularyContext vocabularyContext, Vocabulary row)
+        public static void AddRow(VocabularyContext vocabularyContext, Vocabulary row)
         {
             try
             {

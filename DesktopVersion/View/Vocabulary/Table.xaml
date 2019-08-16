@@ -12,6 +12,10 @@
                 <MenuItem x:Name="Settings" Header="Настройки"/>
                 <MenuItem x:Name="ExitAcc" Header="Выход из аккаунта" Click="ExitAcc_Click" />
             </MenuItem>
+            <MenuItem x:Name="Operations" Header="Операции" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <MenuItem x:Name="Add" Header="Добавить строку" Click="Add_Click"/>
+                <MenuItem x:Name="Delete" Header="Удалить строчки" Click="Delete_Click" />
+            </MenuItem>
         </Menu>
         <DataGrid x:Name="TableView" Margin="0,24,0,0.333" AutoGenerateColumns="True"/>
     </Grid>

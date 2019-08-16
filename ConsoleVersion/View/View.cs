@@ -104,7 +104,7 @@ namespace ConsoleVersion.View
                 if (chooseOps == 1)
                 {
                     Vocabulary row = VocabularyController.createRow(currentUser);
-                    VocabularyController.AddVocabulary(_vocabularyContext, row);
+                    VocabularyController.AddRow(_vocabularyContext, row);
                     Console.WriteLine("Row successfully added.");
                     Console.ReadKey();
                 }

@@ -31,7 +31,6 @@ namespace DesktopVersion
     {
         User currentUser;
         private static VocabularyContext _vocabularyContext;
-        //TODO: Фиксировать изменения в таблице
         public Table(User sessionUser)
         {
             InitializeComponent();
@@ -53,7 +52,6 @@ namespace DesktopVersion
                         LocalWord = row.LocalWord
                     });
             }
-
             TableView.ItemsSource = rows;
         }
 
@@ -62,6 +60,20 @@ namespace DesktopVersion
             MainWindow window = new MainWindow();
             window.Show();
             Close();
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            AddForm add = new AddForm(_vocabularyContext);
+            if (add.ShowDialog() == true)
+                MessageBox.Show("Строка добавлена успешно!");
+            else
+                MessageBox.Show("Операция отменена");
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
