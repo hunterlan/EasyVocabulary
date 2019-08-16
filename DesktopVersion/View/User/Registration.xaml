@@ -13,8 +13,8 @@
         <PasswordBox HorizontalAlignment="Center" Name="PasswordBox" Height="23" Margin="0,0,0,120" VerticalAlignment="Center" Width="120"/>
         <TextBlock HorizontalAlignment="Center" Margin="0,0,0,80" TextWrapping="Wrap" Text="Confrim password" VerticalAlignment="Center"/>
         <PasswordBox HorizontalAlignment="Center" Name="ConfrimBox" Height="23" Margin="0,0,0,40" VerticalAlignment="Center" Width="120"/>
-        <TextBlock HorizontalAlignment="Center" Name="EmailBox" TextWrapping="Wrap" Text="Enter email" VerticalAlignment="Center"/>
-        <TextBox HorizontalAlignment="Center" Height="23" Margin="0,40,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Enter email" VerticalAlignment="Center"/>
+        <TextBox x:Name="EmailBox" HorizontalAlignment="Center" Height="23" Margin="0,40,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
         <Button HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,205,0,0" Name="CreateUser" Content="Sign up!" Width="81" Click="CreateUser_Click" />
     </Grid>
 </Window>

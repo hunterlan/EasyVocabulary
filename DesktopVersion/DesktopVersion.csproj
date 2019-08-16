@@ -56,7 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddForm.xaml.cs">
+    <Compile Include="View\Vocabulary\AddForm.xaml.cs">
       <DependentUpon>AddForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\User\Registration.xaml.cs">
@@ -65,7 +65,7 @@
     <Compile Include="View\Vocabulary\Table.xaml.cs">
       <DependentUpon>Table.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddForm.xaml">
+    <Page Include="View\Vocabulary\AddForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
