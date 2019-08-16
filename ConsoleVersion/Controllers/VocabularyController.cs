@@ -68,6 +68,19 @@ namespace ConsoleVersion
             return foundRow;
         }
 
+        public static Vocabulary FindRow(Vocabulary row, VocabularyContext vocabularyContext)
+        {
+            foreach(var vocabulary in vocabularyContext.Vocabularies.ToList())
+            {
+                if (vocabulary.ForeignWord == row.ForeignWord &&
+                    vocabulary.Transcription == row.Transcription &&
+                    vocabulary.LocalWord == row.LocalWord &&
+                    vocabulary.UserID == row.UserID) 
+                    return vocabulary;
+            }
+            return null;
+        }
+
         public static void RemoveVocabulary(VocabularyContext vocabularyContext, User user)
         {
             try

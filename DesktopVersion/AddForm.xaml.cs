@@ -23,9 +23,11 @@ namespace DesktopVersion
     public partial class AddForm : Window
     {
         VocabularyContext _vocabularyContext;
-        public AddForm(VocabularyContext vocabularyContext)
+        User user;
+        public AddForm(VocabularyContext vocabularyContext, User currentUser)
         {
             _vocabularyContext = vocabularyContext;
+            user = currentUser;
             InitializeComponent();
         }
 
@@ -39,6 +41,7 @@ namespace DesktopVersion
                 row.ForeignWord = ForeignBox.Text;
                 row.Transcription = TransBox.Text;
                 row.LocalWord = LocalBox.Text;
+                row.UserID = user.Id;
                 VocabularyController.AddRow(_vocabularyContext, row);
                 if (Exceptions.IsError == 1)
                 {

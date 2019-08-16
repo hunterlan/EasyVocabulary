@@ -1,4 +1,5 @@
-﻿using ConsoleVersion.Helper;
+﻿using ConsoleVersion;
+using ConsoleVersion.Helper;
 using ConsoleVersion.Models;
 using System;
 using System.Collections.Generic;
@@ -64,7 +65,7 @@ namespace DesktopVersion
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            AddForm add = new AddForm(_vocabularyContext);
+            AddForm add = new AddForm(_vocabularyContext, currentUser);
             if (add.ShowDialog() == true)
                 MessageBox.Show("Строка добавлена успешно!");
             else
@@ -72,9 +73,22 @@ namespace DesktopVersion
             LoadGrid();
         }
 
-        private void Delete_Click(object sender, RoutedEventArgs e)
+        private void TableView_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.Key == Key.Delete)
+            {
+                var deletedTemperyRow = (VocabularyView)TableView.SelectedItem;
+                Vocabulary row = new Vocabulary
+                {
+                    ForeignWord = deletedTemperyRow.ForeignWord,
+                    Transcription = deletedTemperyRow.Transcription,
+                    LocalWord = deletedTemperyRow.LocalWord,
+                    UserID = currentUser.Id
+                };
+                row = VocabularyController.FindRow(row, _vocabularyContext);
+                VocabularyController.RemoveRow(_vocabularyContext, row);
+                LoadGrid();
+            }
         }
     }
 }
