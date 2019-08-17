@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 using ConsoleVersion.Controllers;
 using ConsoleVersion.Helper;
 using ConsoleVersion.Models;
@@ -26,7 +27,7 @@ namespace ConsoleVersion.View
 
         private static string[] _gameMenu =
         {
-            "Write transcription", "Tournament table", "Setting", "Return to main menu"
+            "Write transcription", "Tournament table", "Help", "Setting", "Return to main menu"
         };
 
         private static readonly int EMPTY = 0;
@@ -272,27 +273,58 @@ namespace ConsoleVersion.View
 
         static void GameMenu()
         {
+            const int FOREIGN_TRANSLATION = 0; //local translation = 1
+            const int MIN_COUNT = 20;
+            const int TIMER_MILISECONDS = 32000;
             byte gameChoose = UsefulFunctions.Choose(_gameMenu);
+            SettingGame settingGame = new SettingGame(_vocabularyContext);
             switch(gameChoose)
             {
                 case 1:
                 {
+                    if (_vocabularyContext.Vocabularies.ToList().Count < MIN_COUNT)
+                        Console.WriteLine("Count of words less than {0}", MIN_COUNT);
+                    else
+                    {
+                            TimerCallback tm = new TimerCallback(GameController.TimerOver);
+                            Timer timer = new Timer(tm, null, TIMER_MILISECONDS, -1);
+                            while (!GameController.isTimerOver)
+                            {
+                                int translation = FOREIGN_TRANSLATION;
+                                Vocabulary getRow = GameController.ChooseRandomRow(
+                                    _vocabularyContext.Vocabularies.ToList(), ref translation);
 
+                                string word;
+
+                                Console.WriteLine("Write the translation to ");
+                                _ = translation == FOREIGN_TRANSLATION ?
+                                    word = getRow.ForeignWord : (word = getRow.LocalWord);
+                                Console.WriteLine("Write the translation to {0}", word);
+
+                                string result = Console.ReadLine();
+
+                                if (GameController.Checker(getRow, result, translation))
+                                    GameController.points += settingGame.countPoints;
+                            }
+                            Console.WriteLine("Count of points is ", GameController.points);
+                    }
                 }break;
                 case 2:
                 {
 
                 }break;
-                case 3:
+                case 4:
                 {
 
                 }break;
-                case 4:
+                case 5:
                     break;
                 default:
                     break;
             }
         }
+
+
 
         public static User createUser()
         {

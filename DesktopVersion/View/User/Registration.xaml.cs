@@ -40,7 +40,6 @@ namespace DesktopVersion
                     MessageBox.Show("Passwords are different!");
                 else
                 {
-
                     newUser.Nickname = NicknameBox.Text;
                     newUser.Password = PasswordBox.Password;
                     newUser.Email = EmailBox.Text;

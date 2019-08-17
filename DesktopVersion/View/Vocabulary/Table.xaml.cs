@@ -34,6 +34,7 @@ namespace DesktopVersion
         private static VocabularyContext _vocabularyContext;
         public Table(User sessionUser)
         {
+            //TODO: Think about changing data
             InitializeComponent();
             currentUser = sessionUser;
             _vocabularyContext = new VocabularyContext();
