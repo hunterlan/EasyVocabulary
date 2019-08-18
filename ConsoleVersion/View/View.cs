@@ -273,6 +273,7 @@ namespace ConsoleVersion.View
 
         static void GameMenu()
         {
+            UsefulFunctions.PrepareForView();
             const int FOREIGN_TRANSLATION = 0; //local translation = 1
             const int MIN_COUNT = 20;
             const int TIMER_MILISECONDS = 32000;
@@ -290,13 +291,13 @@ namespace ConsoleVersion.View
                             Timer timer = new Timer(tm, null, TIMER_MILISECONDS, -1);
                             while (!GameController.isTimerOver)
                             {
+                                UsefulFunctions.PrepareForView();
                                 int translation = FOREIGN_TRANSLATION;
                                 Vocabulary getRow = GameController.ChooseRandomRow(
                                     _vocabularyContext.Vocabularies.ToList(), ref translation);
 
                                 string word;
 
-                                Console.WriteLine("Write the translation to ");
                                 _ = translation == FOREIGN_TRANSLATION ?
                                     word = getRow.ForeignWord : (word = getRow.LocalWord);
                                 Console.WriteLine("Write the translation to {0}", word);
@@ -306,7 +307,8 @@ namespace ConsoleVersion.View
                                 if (GameController.Checker(getRow, result, translation))
                                     GameController.points += settingGame.countPoints;
                             }
-                            Console.WriteLine("Count of points is ", GameController.points);
+                            Console.WriteLine("Count of points is {0}", GameController.points);
+                            Console.ReadLine();
                     }
                 }break;
                 case 2:

@@ -71,5 +71,10 @@ namespace ConsoleVersion.Controllers
         {
             isTimerOver = true;
         }
+
+        public static void WriteToTable(int point, User currentUser)
+        {
+            //TODO: Write logic. This function will write record to the table
+        }
     }
 }
