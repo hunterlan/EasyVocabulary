@@ -22,11 +22,22 @@ namespace DesktopVersion
     /// </summary>\
     class VocabularyView
     {
+        private int ID;
         public string ForeignWord { get; set; }
 
         public string Transcription { get; set; }
 
         public string LocalWord { get; set; }
+
+        public void setID(int giveID)
+        {
+            ID = giveID;
+        }
+
+        public int getID()
+        {
+            return ID;
+        }
     }
     public partial class Table : Window
     {
@@ -47,12 +58,17 @@ namespace DesktopVersion
             foreach (var row in _vocabularyContext.Vocabularies.ToList())
             {
                 if (row.UserID == currentUser.Id)
-                    rows.Add(new VocabularyView
-                    {
+                {
+                    var temp = new VocabularyView {
+
                         ForeignWord = row.ForeignWord,
                         Transcription = row.Transcription,
                         LocalWord = row.LocalWord
-                    });
+                    };
+                    temp.setID(row.Id);
+                    rows.Add(temp);
+                }
+                    
             }
             TableView.ItemsSource = rows;
         }
@@ -90,6 +106,21 @@ namespace DesktopVersion
                 VocabularyController.RemoveRow(_vocabularyContext, row);
                 LoadGrid();
             }
+        }
+
+        private void TableView_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            var editedRow = (VocabularyView)TableView.SelectedItem;
+            Vocabulary row = new Vocabulary
+            {
+                Id = editedRow.getID(),
+                ForeignWord = editedRow.ForeignWord,
+                Transcription = editedRow.Transcription,
+                LocalWord = editedRow.LocalWord,
+                UserID = currentUser.Id
+            };
+            VocabularyController.UpdateRow(_vocabularyContext, row);
+            //LoadGrid();
         }
     }
 }

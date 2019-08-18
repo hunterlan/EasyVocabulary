@@ -16,6 +16,6 @@
                 <MenuItem x:Name="Add" Header="Добавить строку" Click="Add_Click"/>
             </MenuItem>
         </Menu>
-        <DataGrid x:Name="TableView" Margin="0,24,0,0.333" AutoGenerateColumns="True" PreviewKeyDown="TableView_PreviewKeyDown"/>
+        <DataGrid x:Name="TableView" Margin="0,24,0,0.333" AutoGenerateColumns="True" PreviewKeyDown="TableView_PreviewKeyDown" CellEditEnding="TableView_CellEditEnding"/>
     </Grid>
 </Window>
