@@ -13,7 +13,7 @@ namespace ConsoleVersion.Controllers
             User result = null;
             try
             {
-                result = userContext.Users.Single(d => d.Nickname == user.Nickname);
+                result = userContext.Users.First(d => d.Nickname == user.Nickname);
 
                 if (result != null)
                 {
@@ -32,9 +32,14 @@ namespace ConsoleVersion.Controllers
         {
             try
             {
-                user.Password = SecurePasswordHasher.Hash(user.Password);
-                user = userContext.Users.Add(user);
-                userContext.SaveChanges();
+                if (FindUser(userContext, user) == false)
+                {
+                    user.Password = SecurePasswordHasher.Hash(user.Password);
+                    user = userContext.Users.Add(user);
+                    userContext.SaveChanges();
+                }
+                else
+                    throw new Exception("Nickname is using.");
             }
             catch (Exception e)
             {
@@ -68,6 +73,13 @@ namespace ConsoleVersion.Controllers
             {
                 Exceptions.Catching(e);
             }
+        }
+
+        private static bool FindUser(UserContext userContext, User user)
+        {
+            if (userContext.Users.First(u => u.Nickname == user.Nickname) != null)
+                return true;
+            return false;
         }
     }
 }
