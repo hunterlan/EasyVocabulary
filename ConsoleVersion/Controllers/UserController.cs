@@ -28,8 +28,9 @@ namespace ConsoleVersion.Controllers
 
             return result;
         }
-        public static void AddUser(UserContext userContext, ref User user)
+        public static bool AddUser(UserContext userContext, ref User user)
         {
+            bool result = false;
             try
             {
                 if (FindUser(userContext, user) == false)
@@ -37,6 +38,7 @@ namespace ConsoleVersion.Controllers
                     user.Password = SecurePasswordHasher.Hash(user.Password);
                     user = userContext.Users.Add(user);
                     userContext.SaveChanges();
+                    result = true;
                 }
                 else
                     throw new Exception("Nickname is using.");
@@ -45,6 +47,8 @@ namespace ConsoleVersion.Controllers
             {
                 Exceptions.Catching(e);
             }
+
+            return result;
         }
 
         public static void UpdateUser(UserContext userContext, User changedUser)

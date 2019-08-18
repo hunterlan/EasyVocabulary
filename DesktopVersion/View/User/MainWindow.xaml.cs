@@ -30,7 +30,7 @@ namespace DesktopVersion
             currentUser = UserController.CompareUser(_userContext, currentUser);
             if (currentUser == null)
             {
-                if(Exceptions.IsError != 1)
+                if (Exceptions.IsError != 1)
                     MessageBox.Show("Nickname or password wrong!");
                 else
                     MessageBox.Show(Exceptions.ErrorMessage);
@@ -46,12 +46,19 @@ namespace DesktopVersion
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
             Registration registrationWindow = new Registration();
-            if(registrationWindow.ShowDialog() == true)
+            if (registrationWindow.ShowDialog() == true)
             {
-                UserController.AddUser(_userContext, ref registrationWindow.user);
-                Table vocabularyWindow = new Table(registrationWindow.user);
-                vocabularyWindow.Show();
-                Close();
+                if (UserController.AddUser(_userContext, ref registrationWindow.user) == false)
+                {
+                    MessageBox.Show(Exceptions.ErrorMessage);
+                    Exceptions.IsError = 0;
+                }
+                else
+                {
+                    Table vocabularyWindow = new Table(registrationWindow.user);
+                    vocabularyWindow.Show();
+                    Close();
+                }
             }
         }
     }
