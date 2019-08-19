@@ -45,7 +45,6 @@ namespace DesktopVersion
         private static VocabularyContext _vocabularyContext;
         public Table(User sessionUser)
         {
-            //TODO: Think about changing data
             InitializeComponent();
             currentUser = sessionUser;
             _vocabularyContext = new VocabularyContext();
@@ -113,14 +112,23 @@ namespace DesktopVersion
             var editedRow = (VocabularyView)TableView.SelectedItem;
             Vocabulary row = new Vocabulary
             {
+                //TODO: Try to understand why TableView return origian, not edited row
                 Id = editedRow.getID(),
                 ForeignWord = editedRow.ForeignWord,
                 Transcription = editedRow.Transcription,
                 LocalWord = editedRow.LocalWord,
                 UserID = currentUser.Id
             };
-            VocabularyController.UpdateRow(_vocabularyContext, row);
+            if(VocabularyController.FindRowByID(editedRow.getID(), _vocabularyContext) != null)
+                VocabularyController.RemoveRow(_vocabularyContext, VocabularyController.FindRowByID(
+                    editedRow.getID(), _vocabularyContext));
+            VocabularyController.AddRow(_vocabularyContext, row);
             //LoadGrid();
+        }
+
+        private void TableView_Initialized(object sender, EventArgs e)
+        {
+
         }
     }
 }

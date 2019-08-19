@@ -68,6 +68,11 @@ namespace ConsoleVersion
             return foundRow;
         }
 
+        public static Vocabulary FindRowByID(int id, VocabularyContext vocabularyContext)
+        {
+            return vocabularyContext.Vocabularies.First(d => d.Id == id);
+        }
+
         public static Vocabulary FindRow(Vocabulary row, VocabularyContext vocabularyContext)
         {
             foreach(var vocabulary in vocabularyContext.Vocabularies.ToList())
