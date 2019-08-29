@@ -78,7 +78,17 @@ namespace ConsoleVersion.Controllers
             RecordTournTable record = new RecordTournTable();
             record.nickname = currentUser.Nickname;
             record.points = points;
-            _records.Records.Add(record);
+            try
+            {
+                //		ErrorMessage	"Требуется поле ID."	string
+
+                _records.Records.Add(record);
+                _records.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                Exceptions.Catching(ex);
+            }
         }
     }
 }
