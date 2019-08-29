@@ -1,4 +1,5 @@
-﻿using ConsoleVersion.Models;
+﻿using ConsoleVersion.Helper;
+using ConsoleVersion.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +11,16 @@ namespace ConsoleVersion.Controllers
 {
     class GameController
     {
-        public static int points { get; set; }
-        public static bool isTimerOver { get; set; }
+        private static TournTableContext _records;
+        public bool isTimerOver { get; set; }
 
         public GameController()
         {
+            _records = new TournTableContext();
             isTimerOver = false;
-            points = 0;
         }
 
-        public static Vocabulary ChooseRandomRow (List<Vocabulary> words, ref int randChoose)
+        public Vocabulary ChooseRandomRow (List<Vocabulary> words, ref int randChoose)
         {
             int randomID, randomTrans;
             Random rand = new Random();
@@ -46,7 +47,7 @@ namespace ConsoleVersion.Controllers
             return true;
         }
 
-        public static bool Checker (Vocabulary row, string result, int codeLanguage)
+        public bool Checker (Vocabulary row, string result, int codeLanguage)
         {
             result = result.ToLower();
             if(codeLanguage == 0)
@@ -67,14 +68,17 @@ namespace ConsoleVersion.Controllers
             }
         }
 
-        public static void TimerOver(object obj)
+        public void TimerOver(object obj)
         {
             isTimerOver = true;
         }
 
-        public static void WriteToTable(int point, User currentUser)
+        public static void WriteToTable(int points, User currentUser)
         {
-            //TODO: Write logic. This function will write record to the table
+            RecordTournTable record = new RecordTournTable();
+            record.nickname = currentUser.Nickname;
+            record.points = points;
+            _records.Records.Add(record);
         }
     }
 }

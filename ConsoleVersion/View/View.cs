@@ -202,7 +202,7 @@ namespace ConsoleVersion.View
                 }
                 else if(chooseOps == 6)
                 {
-                    GameMenu();
+                    GameMenu(currentUser);
                 }
                 else if (chooseOps == 7)
                 {
@@ -271,14 +271,17 @@ namespace ConsoleVersion.View
             return currentUser;
         }
 
-        static void GameMenu()
+        static void GameMenu(User currentUser)
         {
             UsefulFunctions.PrepareForView();
+            GameController gameController = new GameController();
             const int FOREIGN_TRANSLATION = 0; //local translation = 1
             const int MIN_COUNT = 20;
             const int TIMER_MILISECONDS = 32000;
+            int currentPoints = 0;
             byte gameChoose = UsefulFunctions.Choose(_gameMenu);
             SettingGame settingGame = new SettingGame(_vocabularyContext);
+
             switch(gameChoose)
             {
                 case 1:
@@ -287,13 +290,14 @@ namespace ConsoleVersion.View
                         Console.WriteLine("Count of words less than {0}", MIN_COUNT);
                     else
                     {
-                            TimerCallback tm = new TimerCallback(GameController.TimerOver);
+                            TimerCallback tm = new TimerCallback(gameController.TimerOver);
                             Timer timer = new Timer(tm, null, TIMER_MILISECONDS, -1);
-                            while (!GameController.isTimerOver)
+
+                            while (!gameController.isTimerOver)
                             {
                                 UsefulFunctions.PrepareForView();
                                 int translation = FOREIGN_TRANSLATION;
-                                Vocabulary getRow = GameController.ChooseRandomRow(
+                                Vocabulary getRow = gameController.ChooseRandomRow(
                                     _vocabularyContext.Vocabularies.ToList(), ref translation);
 
                                 string word;
@@ -304,10 +308,12 @@ namespace ConsoleVersion.View
 
                                 string result = Console.ReadLine();
 
-                                if (GameController.Checker(getRow, result, translation))
-                                    GameController.points += settingGame.countPoints;
+                                if (gameController.Checker(getRow, result, translation))
+                                    currentPoints += settingGame.countPoints;
                             }
-                            Console.WriteLine("Count of points is {0}", GameController.points);
+
+                            Console.WriteLine("Count of points is {0}", currentPoints);
+                            GameController.WriteToTable(currentPoints, currentUser);
                             Console.ReadLine();
                     }
                 }break;
