@@ -107,28 +107,22 @@ namespace DesktopVersion
             }
         }
 
-        private void TableView_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        private void Update_Click(object sender, RoutedEventArgs e)
         {
-            var editedRow = (VocabularyView)TableView.SelectedItem;
-            Vocabulary row = new Vocabulary
+            var rows = (List<VocabularyView>)TableView.ItemsSource;
+
+            foreach(var row in rows)
             {
-                //TODO: Try to understand why TableView return origian, not edited row
-                Id = editedRow.getID(),
-                ForeignWord = editedRow.ForeignWord,
-                Transcription = editedRow.Transcription,
-                LocalWord = editedRow.LocalWord,
-                UserID = currentUser.Id
-            };
-            if(VocabularyController.FindRowByID(editedRow.getID(), _vocabularyContext) != null)
-                VocabularyController.RemoveRow(_vocabularyContext, VocabularyController.FindRowByID(
-                    editedRow.getID(), _vocabularyContext));
-            VocabularyController.AddRow(_vocabularyContext, row);
-            //LoadGrid();
-        }
-
-        private void TableView_Initialized(object sender, EventArgs e)
-        {
-
+                Vocabulary updatedRow = new Vocabulary
+                {
+                    Id = row.getID(),
+                    ForeignWord = row.ForeignWord,
+                    Transcription = row.Transcription,
+                    LocalWord = row.LocalWord,
+                    UserID = currentUser.Id
+                };
+                VocabularyController.UpdateRow(_vocabularyContext, updatedRow);
+            }
         }
     }
 }

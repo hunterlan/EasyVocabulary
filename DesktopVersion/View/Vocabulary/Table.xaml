@@ -14,8 +14,9 @@
             </MenuItem>
             <MenuItem x:Name="Operations" Header="Операции" VerticalAlignment="Top" HorizontalAlignment="Center">
                 <MenuItem x:Name="Add" Header="Добавить строку" Click="Add_Click"/>
+                <MenuItem x:Name="Update" Header="Применить изменения" Click="Update_Click"/>
             </MenuItem>
         </Menu>
-        <DataGrid x:Name="TableView" Margin="0,24,0,0.333" AutoGenerateColumns="True" PreviewKeyDown="TableView_PreviewKeyDown" CellEditEnding="TableView_CellEditEnding" Initialized="TableView_Initialized"/>
+        <DataGrid x:Name="TableView" Margin="0,24,0,0.333" AutoGenerateColumns="True" PreviewKeyDown="TableView_PreviewKeyDown"/>
     </Grid>
 </Window>
