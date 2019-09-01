@@ -43,13 +43,15 @@ namespace DesktopVersion
     {
         User currentUser;
         private static VocabularyContext _vocabularyContext;
-        public Table(User sessionUser)
+        private UserContext _userContext;
+        public Table(User sessionUser, UserContext userContext)
         {
             //TODO: write all games function for desktop version
             //TODO: end with user settings
             InitializeComponent();
             currentUser = sessionUser;
             _vocabularyContext = new VocabularyContext();
+            _userContext = userContext;
             LoadGrid();
         }
 
@@ -125,6 +127,12 @@ namespace DesktopVersion
                 };
                 VocabularyController.UpdateRow(_vocabularyContext, updatedRow);
             }
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            Setting settingWindow = new Setting(currentUser, _userContext);
+            settingWindow.ShowDialog();
         }
     }
 }

@@ -37,7 +37,7 @@ namespace DesktopVersion
             }
             else
             {
-                Table vocabularyWindow = new Table(currentUser);
+                Table vocabularyWindow = new Table(currentUser, _userContext);
                 vocabularyWindow.Show();
                 Close();
             }
@@ -55,7 +55,7 @@ namespace DesktopVersion
                 }
                 else
                 {
-                    Table vocabularyWindow = new Table(registrationWindow.user);
+                    Table vocabularyWindow = new Table(registrationWindow.user, _userContext);
                     vocabularyWindow.Show();
                     Close();
                 }

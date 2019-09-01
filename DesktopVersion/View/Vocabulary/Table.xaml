@@ -9,7 +9,7 @@
     <Grid>
         <Menu Margin="0,0,0.333,-0.333">
             <MenuItem x:Name="Menus" Header="Меню" VerticalAlignment="Top" HorizontalAlignment="Center">
-                <MenuItem x:Name="Settings" Header="Настройки"/>
+                <MenuItem x:Name="Settings" Header="Настройки" Click="Settings_Click"/>
                 <MenuItem x:Name="ExitAcc" Header="Выход из аккаунта" Click="ExitAcc_Click" />
             </MenuItem>
             <MenuItem x:Name="Operations" Header="Операции" VerticalAlignment="Top" HorizontalAlignment="Center">
