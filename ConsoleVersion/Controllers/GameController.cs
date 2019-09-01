@@ -76,7 +76,7 @@ namespace ConsoleVersion.Controllers
         public static void WriteToTable(int points, User currentUser)
         {
             RecordTournTable record = new RecordTournTable();
-            record.ID = null;
+            record.ID = 1;
             record.nickname = currentUser.Nickname;
             record.points = points;
             try

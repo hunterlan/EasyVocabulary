@@ -8,7 +8,7 @@ namespace ConsoleVersion.Models
 {
     class RecordTournTable
     {
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string nickname { get; set; }
         public int points { get; set; }
     }
