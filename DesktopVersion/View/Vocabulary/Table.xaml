@@ -17,7 +17,9 @@
                 <MenuItem x:Name="Update" Header="Применить изменения" Click="Update_Click"/>
             </MenuItem>
             <MenuItem x:Name="LearnWords" Header="Учить слова" VerticalAlignment="Top" HorizontalAlignment="Center">
-                <MenuItem x:Name="GameTranslation" Header="Написать перевод"/>
+                <MenuItem x:Name="GameTranslation" Header="Написать перевод" Click="GameTranslation_Click"/>
+                <MenuItem x:Name="OneFromTheFouth" Header="Один из 4х"/>
+                <MenuItem x:Name="Matching" Header="Соответствие"/>
                 <MenuItem x:Name="TournTableShow" Header="Турнирная таблица"/>
                 <MenuItem x:Name="Help" Header="Помощь"/>
                 <MenuItem x:Name="Setting" Header="Настройки"/>

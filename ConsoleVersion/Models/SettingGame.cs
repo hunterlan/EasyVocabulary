@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleVersion.Models
 {
-    class SettingGame
+    public class SettingGame
     {
         //less 40 words - only 2 points, less 60 words, 4 point and etc
         public byte countPoints { get; set; } //2, 4, 6, 8, 10

@@ -9,8 +9,11 @@ using System.Threading.Tasks;
 
 namespace ConsoleVersion.Controllers
 {
-    class GameController
+    public class GameController
     {
+        public const int FOREIGN_TRANSLATION = 0; //local translation = 1
+        public const int MIN_COUNT = 20;
+        public const int TIMER_MILISECONDS = 32000;
         private static TournTableContext _records;
         public bool isTimerOver { get; set; }
 

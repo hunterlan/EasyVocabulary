@@ -68,6 +68,9 @@
     <Compile Include="View\Vocabulary\Table.xaml.cs">
       <DependentUpon>Table.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Game\WriteTransWin.xaml.cs">
+      <DependentUpon>WriteTransWin.xaml</DependentUpon>
+    </Compile>
     <Page Include="View\User\Setting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -93,6 +96,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Vocabulary\Table.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Game\WriteTransWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -133,5 +133,11 @@ namespace DesktopVersion
             Setting settingWindow = new Setting(currentUser, _userContext);
             settingWindow.ShowDialog();
         }
+
+        private void GameTranslation_Click(object sender, RoutedEventArgs e)
+        {
+            WriteTransWin window = new WriteTransWin(_vocabularyContext, currentUser);
+            window.ShowDialog();
+        }
     }
 }

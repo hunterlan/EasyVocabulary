@@ -275,9 +275,7 @@ namespace ConsoleVersion.View
         {
             UsefulFunctions.PrepareForView();
             GameController gameController = new GameController();
-            const int FOREIGN_TRANSLATION = 0; //local translation = 1
-            const int MIN_COUNT = 20;
-            const int TIMER_MILISECONDS = 32000;
+            
             int currentPoints = 0;
             byte gameChoose = UsefulFunctions.Choose(_gameMenu);
             SettingGame settingGame = new SettingGame(_vocabularyContext);
@@ -286,23 +284,23 @@ namespace ConsoleVersion.View
             {
                 case 1:
                 {
-                    if (_vocabularyContext.Vocabularies.ToList().Count < MIN_COUNT)
-                        Console.WriteLine("Count of words less than {0}", MIN_COUNT);
+                    if (_vocabularyContext.Vocabularies.ToList().Count < GameController.MIN_COUNT)
+                        Console.WriteLine("Count of words less than {0}", GameController.MIN_COUNT);
                     else
                     {
                             TimerCallback tm = new TimerCallback(gameController.TimerOver);
-                            Timer timer = new Timer(tm, null, TIMER_MILISECONDS, -1);
+                            Timer timer = new Timer(tm, null, GameController.TIMER_MILISECONDS, -1);
 
                             while (!gameController.isTimerOver)
                             {
                                 UsefulFunctions.PrepareForView();
-                                int translation = FOREIGN_TRANSLATION;
+                                int translation = GameController.FOREIGN_TRANSLATION;
                                 Vocabulary getRow = gameController.ChooseRandomRow(
                                     _vocabularyContext.Vocabularies.ToList(), ref translation);
 
                                 string word;
 
-                                _ = translation == FOREIGN_TRANSLATION ?
+                                _ = translation == GameController.FOREIGN_TRANSLATION ?
                                     word = getRow.ForeignWord : (word = getRow.LocalWord);
                                 Console.WriteLine("Write the translation to {0}", word);
 
