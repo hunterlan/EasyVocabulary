@@ -47,7 +47,6 @@ namespace DesktopVersion
         public Table(User sessionUser, UserContext userContext)
         {
             //TODO: write all games function for desktop version
-            //TODO: end with user settings
             InitializeComponent();
             currentUser = sessionUser;
             _vocabularyContext = new VocabularyContext();

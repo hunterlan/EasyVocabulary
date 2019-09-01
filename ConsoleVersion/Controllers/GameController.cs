@@ -81,8 +81,6 @@ namespace ConsoleVersion.Controllers
             record.points = points;
             try
             {
-                //		ErrorMessage	"Требуется поле ID."	string
-
                 _records.Records.Add(record);
                 _records.SaveChanges();
             }
