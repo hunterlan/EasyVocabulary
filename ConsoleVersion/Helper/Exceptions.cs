@@ -8,6 +8,7 @@ namespace ConsoleVersion.Helper
 
         public static string ErrorMessage { get; set; }
 
+        //TODO: Check the way of showing exceptions.
         public static void Catching(Exception e)
         {
             if (e.HResult == -2146233087)
