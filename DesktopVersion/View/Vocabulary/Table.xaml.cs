@@ -145,5 +145,11 @@ namespace DesktopVersion
             OneFromTheFouthWin window = new OneFromTheFouthWin(_vocabularyContext, currentUser);
             window.ShowDialog();
         }
+
+        private void TournTableShow_Click(object sender, RoutedEventArgs e)
+        {
+            RecordTableView window = new RecordTableView();
+            window.ShowDialog();
+        }
     }
 }

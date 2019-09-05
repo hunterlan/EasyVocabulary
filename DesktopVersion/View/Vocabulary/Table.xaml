@@ -20,7 +20,7 @@
                 <MenuItem x:Name="GameTranslation" Header="Написать перевод" Click="GameTranslation_Click"/>
                 <MenuItem x:Name="OneFromTheFouth" Header="Один из 4х" Click="OneFromTheFouth_Click"/>
                 <MenuItem x:Name="Matching" Header="Соответствие"/>
-                <MenuItem x:Name="TournTableShow" Header="Турнирная таблица"/>
+                <MenuItem x:Name="TournTableShow" Header="Турнирная таблица" Click="TournTableShow_Click"/>
                 <MenuItem x:Name="Help" Header="Помощь"/>
                 <MenuItem x:Name="Setting" Header="Настройки"/>
             </MenuItem>

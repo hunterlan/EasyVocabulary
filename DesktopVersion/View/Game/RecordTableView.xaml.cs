@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ConsoleVersion.Helper;
+using ConsoleVersion.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,12 @@ namespace DesktopVersion
     /// </summary>
     public partial class RecordTableView : Window
     {
+        TournTableContext tournTable;  
         public RecordTableView()
         {
             InitializeComponent();
+            tournTable = new TournTableContext();
+            RecordsView.ItemsSource = tournTable.Records.ToList();
         }
     }
 }

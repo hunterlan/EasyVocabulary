@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopVersion"
         mc:Ignorable="d"
-        Title="RecordTableView" Height="450" Width="800">
+        Title="RecordTableView" Height="300" Width="400">
     <Grid>
-        
+        <DataGrid Name="RecordsView" Margin="0,0,0.333,-0.333" HorizontalAlignment="Right" Width="393" Height="271" VerticalAlignment="Bottom"/>
+
     </Grid>
 </Window>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleVersion.Models
 {
-    class RecordTournTable
+    public class RecordTournTable
     {
         public int ID { get; set; }
         public string nickname { get; set; }

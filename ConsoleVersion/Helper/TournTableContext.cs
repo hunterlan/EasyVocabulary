@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ConsoleVersion.Helper
 {
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
-    class TournTableContext : DbContext
+    public class TournTableContext : DbContext
     {
         public TournTableContext() : base("DeveloperConnection")
         { }
