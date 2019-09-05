@@ -36,6 +36,16 @@ namespace ConsoleVersion.Controllers
             return row;
         }
 
+        public Vocabulary ChooseRandomRow(List<Vocabulary> words)
+        {
+            Random rand = new Random();
+            int randomID;
+
+            randomID = rand.Next(words.Count);
+
+            return words[randomID];
+        }
+
         private static bool CompareWords(string word1, string word2)
         {
             const int COUNT_MISTAKES = 1;

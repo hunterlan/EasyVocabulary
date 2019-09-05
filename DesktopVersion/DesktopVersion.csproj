@@ -56,6 +56,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="View\Game\OneFromTheFouthWin.xaml.cs">
+      <DependentUpon>OneFromTheFouthWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Game\RecordTableView.xaml.cs">
+      <DependentUpon>RecordTableView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\User\Setting.xaml.cs">
       <DependentUpon>Setting.xaml</DependentUpon>
     </Compile>
@@ -71,6 +77,14 @@
     <Compile Include="View\Game\WriteTransWin.xaml.cs">
       <DependentUpon>WriteTransWin.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\Game\OneFromTheFouthWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Game\RecordTableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\User\Setting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

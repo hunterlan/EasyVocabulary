@@ -139,5 +139,11 @@ namespace DesktopVersion
             WriteTransWin window = new WriteTransWin(_vocabularyContext, currentUser);
             window.ShowDialog();
         }
+
+        private void OneFromTheFouth_Click(object sender, RoutedEventArgs e)
+        {
+            OneFromTheFouthWin window = new OneFromTheFouthWin(_vocabularyContext, currentUser);
+            window.ShowDialog();
+        }
     }
 }

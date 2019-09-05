@@ -73,5 +73,7 @@ namespace ConsoleVersion.Helper
             Exceptions.IsError = 0;
             Console.Clear();
         }
+
+        
     }
 }
