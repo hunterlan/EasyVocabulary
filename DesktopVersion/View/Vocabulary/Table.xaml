@@ -8,21 +8,21 @@
         Title="Table" Height="506.634" Width="363">
     <Grid>
         <Menu Margin="0,0,0.333,-0.333">
-            <MenuItem x:Name="Menus" Header="Меню" VerticalAlignment="Top" HorizontalAlignment="Center">
-                <MenuItem x:Name="Settings" Header="Настройки" Click="Settings_Click"/>
-                <MenuItem x:Name="ExitAcc" Header="Выход из аккаунта" Click="ExitAcc_Click" />
+            <MenuItem x:Name="Menus" Header="Menu" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <MenuItem x:Name="Settings" Header="Settings" Click="Settings_Click"/>
+                <MenuItem x:Name="ExitAcc" Header="Log out" Click="ExitAcc_Click" />
             </MenuItem>
-            <MenuItem x:Name="Operations" Header="Операции" VerticalAlignment="Top" HorizontalAlignment="Center">
-                <MenuItem x:Name="Add" Header="Добавить строку" Click="Add_Click"/>
-                <MenuItem x:Name="Update" Header="Применить изменения" Click="Update_Click"/>
+            <MenuItem x:Name="Operations" Header="Operations" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <MenuItem x:Name="Add" Header="Add row" Click="Add_Click"/>
+                <MenuItem x:Name="Update" Header="Submit changes" Click="Update_Click"/>
             </MenuItem>
-            <MenuItem x:Name="LearnWords" Header="Учить слова" VerticalAlignment="Top" HorizontalAlignment="Center">
-                <MenuItem x:Name="GameTranslation" Header="Написать перевод" Click="GameTranslation_Click"/>
-                <MenuItem x:Name="OneFromTheFouth" Header="Один из 4х" Click="OneFromTheFouth_Click"/>
-                <MenuItem x:Name="Matching" Header="Соответствие"/>
-                <MenuItem x:Name="TournTableShow" Header="Турнирная таблица" Click="TournTableShow_Click"/>
-                <MenuItem x:Name="Help" Header="Помощь"/>
-                <MenuItem x:Name="Setting" Header="Настройки"/>
+            <MenuItem x:Name="LearnWords" Header="Learning words" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <MenuItem x:Name="GameTranslation" Header="Write the translation" Click="GameTranslation_Click"/>
+                <MenuItem x:Name="OneFromTheFouth" Header="Оne from 4th" Click="OneFromTheFouth_Click"/>
+                <MenuItem x:Name="Matching" Header="Match translation"/>
+                <MenuItem x:Name="TournTableShow" Header="Tournament table" Click="TournTableShow_Click"/>
+                <MenuItem x:Name="Help" Header="Help"/>
+                <MenuItem x:Name="Setting" Header="Settings"/>
             </MenuItem>
         </Menu>
         <DataGrid x:Name="TableView" Margin="0,24,0,0.333" AutoGenerateColumns="True" PreviewKeyDown="TableView_PreviewKeyDown"/>

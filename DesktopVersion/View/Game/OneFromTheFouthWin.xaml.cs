@@ -99,7 +99,7 @@ namespace DesktopVersion
                     buttons[i].Content = rightAnswer;
                 else
                 {
-                    //TODO: There is a bug, when 3 or all buttons right. Fix the bug.
+                    //TODO: There is a bug, when 3 or all buttons right. However, in debug, it's working normal
                     currentRow = gameController.ChooseRandomRow(_vocabularyContext.Vocabularies.ToList());
                     if (translation == GameController.FOREIGN_TRANSLATION)
                         buttons[i].Content = currentRow.LocalWord;
@@ -114,8 +114,6 @@ namespace DesktopVersion
             Button btnClicker = (Button)sender;
             if (btnClicker.Content == rightAnswer)
                 currentPoints += 10;
-            else
-                MessageBox.Show("Isn't right");
             if (gameController.isTimerOver)
             {
                 MessageBox.Show("Count of points is " + currentPoints);

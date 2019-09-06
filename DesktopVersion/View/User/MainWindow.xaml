@@ -5,17 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopVersion"
         mc:Ignorable="d"
-        Title="MainWindow" Height="240" Width="320">
-    <Grid>
-        <Button Content="Log In" HorizontalAlignment="Center" Margin="0,160,0,0" VerticalAlignment="Center" Width="75" Click="Button_Click"/>
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20, 40, 0, 0" Text="Your nickname" />
-        <TextBox x:Name="BoxLogin" HorizontalAlignment="Left" Height="23" Margin="20,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="127"/>
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,85,0,0" Text="Your password" />
-        <PasswordBox x:Name="BoxPassword" HorizontalAlignment="Left" Margin="20,106,0,0" VerticalAlignment="Top" Width="127" Height="23"/>
-        <TextBlock HorizontalAlignment="Left" Margin="20,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="127">
-            <Hyperlink NavigateUri="1" Click="Hyperlink_Click">Don't have an account?</Hyperlink>
+        Title="EasyVocabulary" Height="240" Width="320">
+    <Grid Background="#FF76B852">
+        <Button Content="Log In" HorizontalAlignment="Left" Margin="40,80,0,0" VerticalAlignment="Center" Width="75" Click="Button_Click" BorderBrush="{x:Null}" Background="White"/>
+        <TextBox x:Name="BoxLogin" HorizontalAlignment="Left" Height="23" Margin="40,0,0,90" TextWrapping="Wrap" VerticalAlignment="Center" Width="230" BorderBrush="{x:Null}"/>
+        <PasswordBox x:Name="BoxPassword" HorizontalAlignment="Left" Margin="40,0,0,0" VerticalAlignment="Center" Width="230" Height="23" BorderBrush="{x:Null}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="40,140,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="127" FontFamily="Segoe UI">
+            <Hyperlink NavigateUri="1" Click="Hyperlink_Click" Foreground="White">Don't have an account?</Hyperlink>
         </TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="20,152,0,0" TextWrapping="Wrap" Text="Forget password?" VerticalAlignment="Top" Width="127"/>
+        <TextBlock HorizontalAlignment="Left" Margin="130,80,0,0" TextWrapping="Wrap" Text="Forget password?" VerticalAlignment="Center" Width="127" Foreground="White"/>
 
     </Grid>
 </Window>
