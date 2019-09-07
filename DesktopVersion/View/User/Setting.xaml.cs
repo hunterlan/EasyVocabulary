@@ -50,9 +50,15 @@ namespace DesktopVersion
 
             if (NewPassword.Password == ConfirmPassword.Password)
                 updatedUser.Password = ConfirmPassword.Password;
+
             updatedUser.Password = SecurePasswordHasher.Hash(updatedUser.Password);
-            UserController.UpdateUser(_userContext, updatedUser);
-            ShowUserData();
+            if(UserController.UpdateUser(_userContext, updatedUser) == true)
+                ShowUserData();
+            else
+            {
+                MessageBox.Show(Exceptions.ErrorMessage, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                Exceptions.IsError = 0;
+            }
         }
     }
 }

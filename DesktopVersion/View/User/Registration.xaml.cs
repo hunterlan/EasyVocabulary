@@ -29,27 +29,25 @@ namespace DesktopVersion
         private void CreateUser_Click(object sender, RoutedEventArgs e)
         {
             User newUser = new User();
+
             if(NicknameBox.Text.Length == 0 || PasswordBox.Password.Length == 0 ||
                 ConfrimBox.Password.Length == 0 || EmailBox.Text.Length == 0)
             {
-                MessageBox.Show("All fields are required!");
+                MessageBox.Show("All fields are required!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
                 if (PasswordBox.Password != ConfrimBox.Password)
-                    MessageBox.Show("Passwords are different!");
+                    MessageBox.Show("Passwords are different!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 else
                 {
                     newUser.Nickname = NicknameBox.Text;
                     newUser.Password = PasswordBox.Password;
                     newUser.Email = EmailBox.Text;
-
                     user = newUser;
                     DialogResult = true;
                 }
             }
-            
-
         }
     }
 }

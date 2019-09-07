@@ -23,26 +23,35 @@ namespace DesktopVersion
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            User currentUser = new User
-            {
-                Nickname = BoxLogin.Text,
-                Password = BoxPassword.Password
-            };
-
-            currentUser = UserController.CompareUser(_userContext, currentUser);
-            if (currentUser == null)
-            {
-                if (Exceptions.IsError != 1)
-                    MessageBox.Show("Nickname or password wrong!");
-                else
-                    MessageBox.Show(Exceptions.ErrorMessage);
-            }
+            if(BoxLogin.Text.Length == 0 || BoxPassword.Password.Length == 0)
+                MessageBox.Show("Password or/and nickname box empty!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             else
             {
-                Table vocabularyWindow = new Table(currentUser, _userContext);
-                vocabularyWindow.Show();
-                Close();
+                User currentUser = new User
+                {
+                    Nickname = BoxLogin.Text,
+                    Password = BoxPassword.Password
+                };
+
+                currentUser = UserController.CompareUser(_userContext, currentUser);
+                if (currentUser == null)
+                {
+                    if (Exceptions.IsError != 1)
+                        MessageBox.Show("Nickname or password wrong!");
+                    else
+                    {
+                        MessageBox.Show(Exceptions.ErrorMessage);
+                        Exceptions.IsError = 0;
+                    }
+                }
+                else
+                {
+                    Table vocabularyWindow = new Table(currentUser, _userContext);
+                    vocabularyWindow.Show();
+                    Close();
+                }
             }
+            
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)

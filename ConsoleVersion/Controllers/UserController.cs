@@ -51,8 +51,9 @@ namespace ConsoleVersion.Controllers
             return result;
         }
 
-        public static void UpdateUser(UserContext userContext, User changedUser)
+        public static bool UpdateUser(UserContext userContext, User changedUser)
         {
+            bool result = true;
             try
             {
                 userContext.Users.AddOrUpdate(changedUser);
@@ -61,7 +62,10 @@ namespace ConsoleVersion.Controllers
             catch (Exception e)
             {
                 Exceptions.Catching(e);
+                result = false;
             }
+
+            return result;
         }
 
         public static void RemoveUser(UserContext userContext, VocabularyContext vocabularyContext, User user)
