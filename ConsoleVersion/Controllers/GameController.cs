@@ -86,12 +86,13 @@ namespace ConsoleVersion.Controllers
             isTimerOver = true;
         }
 
-        public static void WriteToTable(int points, User currentUser)
+        public static void WriteToTable(int points, User currentUser, string typeOfGame)
         {
             RecordTournTable record = new RecordTournTable();
             record.ID = 1;
             record.nickname = currentUser.Nickname;
             record.points = points;
+            record.typeOfGame = typeOfGame;
             try
             {
                 _records.Records.Add(record);

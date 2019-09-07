@@ -56,6 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="View\Game\UserGameSetting.xaml.cs">
+      <DependentUpon>UserGameSetting.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Template\WIP.xaml.cs">
       <DependentUpon>WIP.xaml</DependentUpon>
     </Compile>
@@ -80,6 +83,10 @@
     <Compile Include="View\Game\WriteTransWin.xaml.cs">
       <DependentUpon>WriteTransWin.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\Game\UserGameSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Template\WIP.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -71,6 +71,7 @@ namespace DesktopVersion
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
             string result = Translator.Text;
+            const int THIS_GAME = 0;
 
             if (gameController.Checker(currentRow, result, translation))
                 currentPoints += settingGame.countPoints;
@@ -78,7 +79,7 @@ namespace DesktopVersion
             if (gameController.isTimerOver)
             {
                 MessageBox.Show("Count of points is " + currentPoints);
-                GameController.WriteToTable(currentPoints, currentUser);
+                GameController.WriteToTable(currentPoints, currentUser, settingGame.TYPE_GAME[THIS_GAME]);
                 Close();
             }
             else

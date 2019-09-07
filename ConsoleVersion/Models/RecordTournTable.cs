@@ -11,5 +11,6 @@ namespace ConsoleVersion.Models
         public int ID { get; set; }
         public string nickname { get; set; }
         public int points { get; set; }
+        public string typeOfGame { get; set; }
     }
 }
