@@ -19,7 +19,7 @@
             <MenuItem x:Name="LearnWords" Header="Learning words" VerticalAlignment="Top" HorizontalAlignment="Center">
                 <MenuItem x:Name="GameTranslation" Header="Write the translation" Click="GameTranslation_Click"/>
                 <MenuItem x:Name="OneFromTheFouth" Header="Оne from 4th" Click="OneFromTheFouth_Click"/>
-                <MenuItem x:Name="Matching" Header="Match translation"/>
+                <MenuItem x:Name="Matching" Header="Match translation" Click="Matching_Click"/>
                 <MenuItem x:Name="TournTableShow" Header="Tournament table" Click="TournTableShow_Click"/>
                 <MenuItem x:Name="Help" Header="Help"/>
                 <MenuItem x:Name="Setting" Header="Settings"/>

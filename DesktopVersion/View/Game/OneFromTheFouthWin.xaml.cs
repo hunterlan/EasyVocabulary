@@ -112,7 +112,7 @@ namespace DesktopVersion
         private void ChoosedAnswer(object sender, RoutedEventArgs e)
         {
             Button btnClicker = (Button)sender;
-            if (btnClicker.Content == rightAnswer)
+            if ((string)btnClicker.Content == rightAnswer)
                 currentPoints += 10;
             if (gameController.isTimerOver)
             {

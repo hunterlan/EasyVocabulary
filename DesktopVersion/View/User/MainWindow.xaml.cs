@@ -16,6 +16,8 @@ namespace DesktopVersion
         private static UserContext _userContext = new UserContext();
         public MainWindow()
         {
+            //TODO: Add placeholder
+            //TODO: Think about forgetting password
             InitializeComponent();
         }
 

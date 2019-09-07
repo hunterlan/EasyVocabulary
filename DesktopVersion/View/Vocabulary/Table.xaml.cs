@@ -46,7 +46,6 @@ namespace DesktopVersion
         private UserContext _userContext;
         public Table(User sessionUser, UserContext userContext)
         {
-            //TODO: write all games function for desktop version
             InitializeComponent();
             currentUser = sessionUser;
             _vocabularyContext = new VocabularyContext();
@@ -149,6 +148,14 @@ namespace DesktopVersion
         private void TournTableShow_Click(object sender, RoutedEventArgs e)
         {
             RecordTableView window = new RecordTableView();
+            window.ShowDialog();
+        }
+
+        private void Matching_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: Make this game function
+            DateTime release = new DateTime(2019,9,28);
+            WIP window = new WIP(release);
             window.ShowDialog();
         }
     }
