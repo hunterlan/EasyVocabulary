@@ -24,11 +24,13 @@ namespace DesktopVersion
     {
         private User currentUser;
         private UserContext _userContext;
-        public Setting(User user, UserContext context)
+        private VocabularyContext _vocabularyContext;
+        public Setting(User user, UserContext context, VocabularyContext vocabularyContext)
         {
             InitializeComponent();
             currentUser = user;
             _userContext = context;
+            _vocabularyContext = vocabularyContext;
             ShowUserData();
         }
 
@@ -59,6 +61,13 @@ namespace DesktopVersion
                 MessageBox.Show(Exceptions.ErrorMessage, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 Exceptions.IsError = 0;
             }
+        }
+
+        private void DeleteAccount_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Are you sure?", "Deleting account", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if(result == MessageBoxResult.Yes)
+                UserController.RemoveUser(_userContext, _vocabularyContext, ref currentUser);
         }
     }
 }

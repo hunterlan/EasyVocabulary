@@ -252,7 +252,7 @@ namespace ConsoleVersion.View
                             checkPassword.Password = Console.ReadLine();
                             if (UserController.CompareUser(_userContext, checkPassword) == null)
                                 continue;
-                            UserController.RemoveUser(_userContext, _vocabularyContext, currentUser);
+                            UserController.RemoveUser(_userContext, _vocabularyContext, ref currentUser);
                             currentUser = null;
                         }
                         break;
@@ -311,7 +311,7 @@ namespace ConsoleVersion.View
                             }
 
                             Console.WriteLine("Count of points is {0}", currentPoints);
-                            GameController.WriteToTable(currentPoints, currentUser);
+                            GameController.WriteToTable(currentPoints, currentUser, null);
                             Console.ReadLine();
                     }
                 }break;

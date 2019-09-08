@@ -129,8 +129,14 @@ namespace DesktopVersion
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
-            Setting settingWindow = new Setting(currentUser, _userContext);
+            Setting settingWindow = new Setting(currentUser, _userContext, _vocabularyContext);
             settingWindow.ShowDialog();
+            if(currentUser == null)
+            {
+                MainWindow window = new MainWindow();
+                window.Show();
+                Close();
+            }
         }
 
         private void GameTranslation_Click(object sender, RoutedEventArgs e)

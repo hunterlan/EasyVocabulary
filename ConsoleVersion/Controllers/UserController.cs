@@ -68,7 +68,7 @@ namespace ConsoleVersion.Controllers
             return result;
         }
 
-        public static void RemoveUser(UserContext userContext, VocabularyContext vocabularyContext, User user)
+        public static void RemoveUser(UserContext userContext, VocabularyContext vocabularyContext, ref User user)
         {
             try
             {
@@ -76,6 +76,7 @@ namespace ConsoleVersion.Controllers
                 vocabularyContext.SaveChanges();
                 userContext.Users.Remove(user);
                 userContext.SaveChanges();
+                user = null;
             }
             catch (Exception e)
             {

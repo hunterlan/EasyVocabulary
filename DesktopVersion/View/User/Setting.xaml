@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopVersion"
         mc:Ignorable="d"
-        Title="Setting" Height="450" Width="800">
-    <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="71,78,0,0" TextWrapping="Wrap" Text="Your nickname" VerticalAlignment="Top"/>
-        <TextBox Name="Nickname" HorizontalAlignment="Left" Height="22" Margin="71,99,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="70,126,0,0" TextWrapping="Wrap" Text="Your email" VerticalAlignment="Top"/>
-        <TextBox Name="Email" HorizontalAlignment="Left" Height="24" Margin="71,147,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="71,176,0,0" TextWrapping="Wrap" Text="New password" VerticalAlignment="Top"/>
-        <PasswordBox Name="NewPassword" HorizontalAlignment="Left" Height="23" Margin="71,197,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="70,225,0,0" TextWrapping="Wrap" Text="Confirm password" VerticalAlignment="Top"/>
-        <PasswordBox Name="ConfirmPassword" HorizontalAlignment="Left" Height="23" Margin="71,241,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button Name="UpdateData" Content="Update" HorizontalAlignment="Left" Margin="281,288,0,0" VerticalAlignment="Top" Width="75" Click="UpdateData_Click"/>
-
+        Title="Setting" Height="300" Width="400">
+    <Grid Background="#FF76B852">
+        <TextBlock HorizontalAlignment="Center" Margin="0,40,200,0" TextWrapping="Wrap" Text="Your nickname" VerticalAlignment="Top" Foreground="White"/>
+        <TextBox Name="Nickname" HorizontalAlignment="Center" Height="22" Margin="30,40,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,80,200,0" TextWrapping="Wrap" Text="Your email" VerticalAlignment="Top" Foreground="White"/>
+        <TextBox Name="Email" HorizontalAlignment="Center" Height="24" Margin="30,80,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,120,200,0" TextWrapping="Wrap" Text="New password" VerticalAlignment="Top" Foreground="White"/>
+        <PasswordBox Name="NewPassword" HorizontalAlignment="Center" Height="23" Margin="30,120,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,160,200,0" TextWrapping="Wrap" Text="Confirm password" VerticalAlignment="Top" Foreground="White"/>
+        <PasswordBox Name="ConfirmPassword" HorizontalAlignment="Center" Height="23" Margin="30,160,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Name="UpdateData" Content="Update" HorizontalAlignment="Center" Margin="0,0,100,30" VerticalAlignment="Bottom" Width="75" Click="UpdateData_Click"/>
+        <Button Name="DeleteAccount" Content="Delete account" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="100, 0, 0, 30" Click="DeleteAccount_Click"/>
     </Grid>
 </Window>

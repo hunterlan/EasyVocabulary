@@ -78,8 +78,9 @@ namespace DesktopVersion
 
             if (gameController.isTimerOver)
             {
+                string typeOfGame = settingGame.TYPE_GAME[THIS_GAME];
                 MessageBox.Show("Count of points is " + currentPoints);
-                GameController.WriteToTable(currentPoints, currentUser, settingGame.TYPE_GAME[THIS_GAME]);
+                GameController.WriteToTable(currentPoints, currentUser, typeOfGame);
                 Close();
             }
             else
