@@ -130,12 +130,15 @@ namespace DesktopVersion
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             Setting settingWindow = new Setting(currentUser, _userContext, _vocabularyContext);
-            settingWindow.ShowDialog();
-            if(currentUser == null)
+            if (settingWindow.ShowDialog() == true)
             {
-                MainWindow window = new MainWindow();
-                window.Show();
-                Close();
+                //TODO: Fix, that window doesn`t close
+                if (currentUser == null)
+                {
+                    MainWindow window = new MainWindow();
+                    window.Show();
+                    Close();
+                }
             }
         }
 

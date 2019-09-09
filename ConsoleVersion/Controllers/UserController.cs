@@ -86,8 +86,11 @@ namespace ConsoleVersion.Controllers
 
         private static bool FindUser(UserContext userContext, User user)
         {
-            if (userContext.Users.First(u => u.Nickname == user.Nickname) != null)
-                return true;
+            foreach(var elem in userContext.Users.ToList())
+            {
+                if (elem.Nickname == user.Nickname)
+                    return true;
+            }
             return false;
         }
     }

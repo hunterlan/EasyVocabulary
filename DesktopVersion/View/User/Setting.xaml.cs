@@ -66,8 +66,11 @@ namespace DesktopVersion
         private void DeleteAccount_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Are you sure?", "Deleting account", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if(result == MessageBoxResult.Yes)
+            if (result == MessageBoxResult.Yes)
+            {
                 UserController.RemoveUser(_userContext, _vocabularyContext, ref currentUser);
+                Close();
+            }
         }
     }
 }
