@@ -22,7 +22,7 @@ namespace DesktopVersion
     /// </summary>
     public partial class Setting : Window
     {
-        private User currentUser;
+        public User currentUser;
         private UserContext _userContext;
         private VocabularyContext _vocabularyContext;
         public Setting(User user, UserContext context, VocabularyContext vocabularyContext)

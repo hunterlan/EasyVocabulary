@@ -60,7 +60,8 @@ namespace DesktopVersion
             {
                 if (row.UserID == currentUser.Id)
                 {
-                    var temp = new VocabularyView {
+                    var temp = new VocabularyView
+                    {
 
                         ForeignWord = row.ForeignWord,
                         Transcription = row.Transcription,
@@ -69,7 +70,7 @@ namespace DesktopVersion
                     temp.setID(row.Id);
                     rows.Add(temp);
                 }
-                    
+
             }
             TableView.ItemsSource = rows;
         }
@@ -113,7 +114,7 @@ namespace DesktopVersion
         {
             var rows = (List<VocabularyView>)TableView.ItemsSource;
 
-            foreach(var row in rows)
+            foreach (var row in rows)
             {
                 Vocabulary updatedRow = new Vocabulary
                 {
@@ -130,16 +131,15 @@ namespace DesktopVersion
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             Setting settingWindow = new Setting(currentUser, _userContext, _vocabularyContext);
-            if (settingWindow.ShowDialog() == true)
+            settingWindow.ShowDialog();
+
+            if (settingWindow.currentUser == null)
             {
-                //TODO: Fix, that window doesn`t close
-                if (currentUser == null)
-                {
-                    MainWindow window = new MainWindow();
-                    window.Show();
-                    Close();
-                }
+                MainWindow window = new MainWindow();
+                window.ShowDialog();
+                Close();
             }
+
         }
 
         private void GameTranslation_Click(object sender, RoutedEventArgs e)
@@ -163,7 +163,7 @@ namespace DesktopVersion
         private void Matching_Click(object sender, RoutedEventArgs e)
         {
             //TODO: Make this game function
-            DateTime release = new DateTime(2019,9,28);
+            DateTime release = new DateTime(2019, 9, 28);
             WIP window = new WIP(release);
             window.ShowDialog();
         }
