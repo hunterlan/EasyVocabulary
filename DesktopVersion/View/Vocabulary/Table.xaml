@@ -5,26 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopVersion"
         mc:Ignorable="d"
-        Title="Table" Height="506.634" Width="363">
+        Title="EasyVocabulary" ResizeMode="NoResize" Height="600.634" Width="400" Background="#FF76B852" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Menu Margin="0,0,0.333,-0.333">
-            <MenuItem x:Name="Menus" Header="Menu" VerticalAlignment="Top" HorizontalAlignment="Center">
-                <MenuItem x:Name="Settings" Header="Settings" Click="Settings_Click"/>
-                <MenuItem x:Name="ExitAcc" Header="Log out" Click="ExitAcc_Click" />
+        <Menu Margin="10,0,0.333,-0.333" Background="#FF76B852">
+            <MenuItem x:Name="Menus" Header="Menu" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}">
+                <MenuItem x:Name="Settings" Header="Settings" BorderThickness="1" Click="Settings_Click" Background="#FF76B852" BorderBrush="{x:Null}"/>
+                <MenuItem x:Name="ExitAcc" Header="Log out" BorderThickness="1" Click="ExitAcc_Click" Background="#FF76B852" BorderBrush="{x:Null}" />
             </MenuItem>
-            <MenuItem x:Name="Operations" Header="Operations" VerticalAlignment="Top" HorizontalAlignment="Center">
-                <MenuItem x:Name="Add" Header="Add row" Click="Add_Click"/>
-                <MenuItem x:Name="Update" Header="Submit changes" Click="Update_Click"/>
+            <MenuItem x:Name="Operations" Header="Operations" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="White">
+                <MenuItem x:Name="Add" Background="#FF76B852" Header="Add row" Click="Add_Click"/>
+                <MenuItem x:Name="Update" Background="#FF76B852" Header="Submit changes" Click="Update_Click"/>
             </MenuItem>
-            <MenuItem x:Name="LearnWords" Header="Learning words" VerticalAlignment="Top" HorizontalAlignment="Center">
-                <MenuItem x:Name="GameTranslation" Header="Write the translation" Click="GameTranslation_Click"/>
-                <MenuItem x:Name="OneFromTheFouth" Header="Оne from 4th" Click="OneFromTheFouth_Click"/>
-                <MenuItem x:Name="Matching" Header="Match translation" Click="Matching_Click"/>
-                <MenuItem x:Name="TournTableShow" Header="Tournament table" Click="TournTableShow_Click"/>
-                <MenuItem x:Name="Help" Header="Help"/>
-                <MenuItem x:Name="Setting" Header="Settings"/>
+            <MenuItem x:Name="LearnWords" Header="Learning words" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="White">
+                <MenuItem x:Name="GameTranslation" Background="#FF76B852" Header="Write the translation" Click="GameTranslation_Click"/>
+                <MenuItem x:Name="OneFromTheFouth" Background="#FF76B852" Header="Оne from 4th" Click="OneFromTheFouth_Click"/>
+                <MenuItem x:Name="Matching" Background="#FF76B852" Header="Match translation" Click="Matching_Click"/>
+                <MenuItem x:Name="TournTableShow" Background="#FF76B852" Header="Tournament table" Click="TournTableShow_Click"/>
+                <MenuItem x:Name="Help" Background="#FF76B852" Header="Help" Click="Help_Click"/>
             </MenuItem>
         </Menu>
-        <DataGrid x:Name="TableView" Margin="0,24,0,0.333" AutoGenerateColumns="True" PreviewKeyDown="TableView_PreviewKeyDown"/>
+        <DataGrid x:Name="TableView" Margin="10,20,10,10" AutoGenerateColumns="True" PreviewKeyDown="TableView_PreviewKeyDown" FontSize="14" Background="White"/>
     </Grid>
 </Window>

@@ -5,14 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopVersion"
         mc:Ignorable="d"
-        Title="AddForm" Height="300" Width="400">
-    <Grid>
-        <Button x:Name="AddRow" Content="Добавить" HorizontalAlignment="Left" Margin="160,213,0,0" VerticalAlignment="Top" Width="75" Click="AddRow_Click"/>
-        <TextBlock HorizontalAlignment="Left" Margin="73,44,0,0" TextWrapping="Wrap" Text="Иностранное слово" VerticalAlignment="Top"/>
-        <TextBox x:Name="LocalBox" HorizontalAlignment="Left" Height="23" Margin="73,163,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="73,147,0,0" TextWrapping="Wrap" Text="Перевод" VerticalAlignment="Top"/>
-        <TextBox x:Name="TransBox" HorizontalAlignment="Left" Height="23" Margin="73,119,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="73,98,0,0" TextWrapping="Wrap" Text="Транскрипция (опционально)" VerticalAlignment="Top"/>
-        <TextBox x:Name="ForeignBox" HorizontalAlignment="Left" Height="23" Margin="73,65,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-    </Grid>
+        Title="Add row" Height="300" Width="400" Foreground="White" Background="#FF76B852">
+    <StackPanel Margin="20">
+        <TextBlock Text="EasyVocabulary" HorizontalAlignment="Center" FontSize="18"/>
+        <Separator Background="White" Foreground="White"></Separator>
+        <Label HorizontalAlignment="Left" Foreground="White" Content="Foreign word"/>
+        <TextBox x:Name="ForeignBox" Width="400" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="18"/>
+        <Label HorizontalAlignment="Left" Foreground="White" Content="Transcription (optionally)"/>
+        <TextBox x:Name="TransBox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" FontSize="18" Width="400"/>
+        <Label Foreground="White" Content="Local word"/>
+        <TextBox x:Name="LocalBox" HorizontalAlignment="Left" FontSize="18" TextWrapping="Wrap" Text="" Width="400"/>
+        <Button x:Name="AddRow" Content="Add word" FontSize="14" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="AddRow_Click"/>
+    </StackPanel>
 </Window>

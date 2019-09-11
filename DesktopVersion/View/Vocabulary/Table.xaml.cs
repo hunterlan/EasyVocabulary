@@ -136,7 +136,7 @@ namespace DesktopVersion
             if (settingWindow.currentUser == null)
             {
                 MainWindow window = new MainWindow();
-                window.ShowDialog();
+                window.Show();
                 Close();
             }
 
@@ -165,6 +165,12 @@ namespace DesktopVersion
             //TODO: Make this game function
             DateTime release = new DateTime(2019, 9, 28);
             WIP window = new WIP(release);
+            window.ShowDialog();
+        }
+
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            HelpWindow window = new HelpWindow();
             window.ShowDialog();
         }
     }
