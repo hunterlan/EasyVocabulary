@@ -121,6 +121,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\StartController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -157,6 +158,8 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Start\Index.cshtml" />
+    <Content Include="Views\User\SignIn.cshtml" />
+    <Content Include="Views\User\SignUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
