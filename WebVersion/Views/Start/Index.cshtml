@@ -8,19 +8,27 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <link rel="stylesheet" href="~/Content/Index.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <title>EasyVocabulary</title>
 </head>
 <body>
-    <div class="firstHalf" style="background: #4cff00" >
-        Здесь что то про мой продукт
+    <div class="firstHalf">
+        <h1>EasyVocabulary</h1>
+        <h3>Сan't speak another language because you don’t have enough vocabulary?</h3>
+        <h3>Break this barrier!</h3>
+        <h3>With EasyVocabulary you will speak fluently!</h3>
+        <img style="height: 40px; width: 40px;" src="~/Content/Icons/books.png" alt="Book" />
     </div>
     <div class="secondHalf">
-        <form action="/User/SignIn">
+        <h1>EasyVocabulary</h1>
+        <h3>Не будь столбом! Используй возможность!</h3>
+        <a href='@Url.Action("SignIn", "User")'>
             <button>Sign in</button>
-        </form>
-        <form action="/User/SignUp">
+        </a>
+        <a href='@Url.Action("SignUp", "User")'>
             <button>Sign up</button>
-        </form>
+        </a>
     </div>
 </body>
 </html>

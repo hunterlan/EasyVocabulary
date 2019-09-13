@@ -1,0 +1,29 @@
+﻿div {
+    font-family: 'Roboto', sans-serif;
+    position: fixed;
+    display: inline
+}
+
+h1, p{
+    margin-top: 16px;
+    text-align: center
+}
+h3 {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.firstHalf {
+    background: #76b852;
+    color: white;
+    width: 50%;
+    height: 100%;
+}
+.secondHalf {
+    color: #76b852;
+    text-align: center;
+    vertical-align: central;
+    margin-left: 50%;
+    width: 50%;
+    height: 100%;
+}
+

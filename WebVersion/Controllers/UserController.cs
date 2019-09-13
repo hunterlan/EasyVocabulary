@@ -8,6 +8,7 @@ namespace WebVersion.Controllers
 {
     public class UserController : Controller
     {
+        //TODO: Write template for pages
         // GET: User
         public ActionResult SignIn()
         {
