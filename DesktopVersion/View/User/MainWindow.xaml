@@ -14,8 +14,9 @@
         <TextBlock HorizontalAlignment="Left" Margin="40,140,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="127" FontFamily="Segoe UI">
             <Hyperlink NavigateUri="1" Click="Hyperlink_Click" Foreground="White">Don't have an account?</Hyperlink>
         </TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="130,80,0,0" TextWrapping="Wrap" Text="Forget password?" VerticalAlignment="Center" Width="127" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="130,80,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="127" Foreground="White">
+            <Hyperlink NavigateUri="1" Foreground="White" Click="Hyperlink_Click_1">Forget password?</Hyperlink>
+        </TextBlock>
         <Separator HorizontalAlignment="Left" Height="115" Background="White" Foreground="White" Margin="43,-17,0,0" VerticalAlignment="Top" Width="226"/>
-
     </Grid>
 </Window>

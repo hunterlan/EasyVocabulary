@@ -56,8 +56,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="HelpWindow.xaml.cs">
+    <Compile Include="View\Game\HelpWindow.xaml.cs">
       <DependentUpon>HelpWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\User\RemindWindow.xaml.cs">
+      <DependentUpon>RemindWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Game\UserGameSetting.xaml.cs">
       <DependentUpon>UserGameSetting.xaml</DependentUpon>
@@ -86,7 +89,11 @@
     <Compile Include="View\Game\WriteTransWin.xaml.cs">
       <DependentUpon>WriteTransWin.xaml</DependentUpon>
     </Compile>
-    <Page Include="HelpWindow.xaml">
+    <Page Include="View\Game\HelpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\User\RemindWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

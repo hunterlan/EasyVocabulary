@@ -16,7 +16,6 @@ namespace DesktopVersion
         private static UserContext _userContext = new UserContext();
         public MainWindow()
         {
-            //TODO: Add placeholder
             //TODO: Think about forgetting password
             InitializeComponent();
         }
@@ -71,6 +70,12 @@ namespace DesktopVersion
                     Close();
                 }
             }
+        }
+
+        private void Hyperlink_Click_1(object sender, RoutedEventArgs e)
+        {
+            RemindWindow window = new RemindWindow(_userContext);
+            window.ShowDialog();
         }
     }
 }
