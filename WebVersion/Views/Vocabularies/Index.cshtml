@@ -1,0 +1,37 @@
+﻿
+@{
+    Layout = null;
+    WebGrid webGrid = new WebGrid(source: Model);
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <main role="main">
+        @if (Model == null || Model.ToList().Count == 0)
+        {
+            <h1>
+                Your vocablury is empty.
+                You can add new words using push button above and choose "Add word"
+            </h1>
+        }
+        else
+        {
+            @webGrid.GetHtml(
+               htmlAttributes: new { @id = "WebGrid", @class = "Grid" },
+               tableStyle: "Grid",
+               headerStyle: "Grid",
+               footerStyle: "GridFooter",
+               columns: webGrid.Columns(
+                        webGrid.Column("ForeignWord", "Foreign words"),
+                        webGrid.Column("Transcription", "Transcription"),
+                        webGrid.Column("LocalWord", "Local words")))
+        }
+    </main>
+</body>
+</html>
