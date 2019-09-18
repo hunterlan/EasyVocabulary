@@ -62,6 +62,9 @@
     <Compile Include="View\Game\HelpWindow.xaml.cs">
       <DependentUpon>HelpWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Game\MatchingWords.xaml.cs">
+      <DependentUpon>MatchingWords.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\User\RemindWindow.xaml.cs">
       <DependentUpon>RemindWindow.xaml</DependentUpon>
     </Compile>
@@ -93,6 +96,10 @@
       <DependentUpon>WriteTransWin.xaml</DependentUpon>
     </Compile>
     <Page Include="View\Game\HelpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Game\MatchingWords.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
