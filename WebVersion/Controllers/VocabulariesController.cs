@@ -15,11 +15,13 @@ namespace WebVersion.Controllers
         VocabularyContext _vocabularyContext;
         public VocabulariesController()
         {
-            userID = Int32.Parse((string)Session["UserID"]);
             _vocabularyContext = new VocabularyContext();
         }
+
         public ActionResult Index()
         {
+            User valueSession = (User)Session["User"];
+            userID = valueSession.Id;
             List<Vocabulary> rows = new List<Vocabulary>();
             foreach(var row in _vocabularyContext.Vocabularies.ToList())
             {

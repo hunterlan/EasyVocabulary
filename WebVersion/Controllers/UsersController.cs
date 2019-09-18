@@ -1,10 +1,8 @@
 ﻿using ConsoleVersion.Controllers;
 using ConsoleVersion.Helper;
 using ConsoleVersion.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace WebVersion.Controllers
@@ -13,11 +11,8 @@ namespace WebVersion.Controllers
     {
         //TODO: Write template for pages
         // GET: User
-        private UserContext _userContext;
-        public UsersController()
-        {
-            _userContext = new UserContext();
-        }
+        private static UserContext _userContext = new UserContext();
+     
         public ActionResult SignIn()
         {
             return View();
@@ -26,20 +21,22 @@ namespace WebVersion.Controllers
         [HttpPost]
         public ActionResult SignIn(User sendedUser)
         {
-            User findedUser = UserController.CompareUser(_userContext, sendedUser);
+            User findedUser = new User();
             bool isAuto = false;
             List<User> users = _userContext.Users.ToList();
             foreach (var user in users)
             {
                 if (user.Nickname == sendedUser.Nickname)
                 {
-                    sendedUser.Id = user.Id;
+                    findedUser = user;
                     isAuto = true;
+                    break;
                 }
             }
             if (isAuto)
             {
-                Session["UserID"] = sendedUser.Id.ToString();
+                
+                Session["User"] = findedUser;
                 return RedirectToAction("Index", "Vocabularies");
             }
             else
@@ -49,6 +46,20 @@ namespace WebVersion.Controllers
         public ActionResult SignUp()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult SignUp(User newUser)
+        {
+            if (UserController.AddUser(_userContext, ref newUser) == false)
+            {
+                return View();
+            }
+            else
+            {
+                Session["User"] = newUser;
+                return RedirectToAction("Index", "Vocabularies");
+            }
         }
     }
 }
