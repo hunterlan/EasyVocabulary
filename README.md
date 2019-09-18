@@ -11,7 +11,7 @@ This project was created to help people improve own lexicon.
 
 - For desktop version (WIP): C# + WPF + MySQL
 
-- For website version (in future): C# + ASP.NET  + MySQL
+- For website version (WIP): C# + ASP.NET  + MySQL
 
 Possible option - switch to .NET Core
 
