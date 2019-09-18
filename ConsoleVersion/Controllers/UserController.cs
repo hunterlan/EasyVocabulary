@@ -68,6 +68,20 @@ namespace ConsoleVersion.Controllers
             return result;
         }
 
+        public static string GeneratePassword()
+        {
+            string password = "";
+
+            const int COUNT_SYMB = 12;
+            for(int i = 0; i < COUNT_SYMB; i++)
+            {
+                Random rand = new Random();
+                char symb = (char)rand.Next('A', 'z');
+                password += symb.ToString();
+            }
+
+            return password;
+        }
         public static void RemoveUser(UserContext userContext, VocabularyContext vocabularyContext, ref User user)
         {
             try
