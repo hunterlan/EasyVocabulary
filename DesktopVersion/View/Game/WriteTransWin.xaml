@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopVersion"
         mc:Ignorable="d"
-        Title="WriteTransWin" Height="300" Width="400">
+        Title="WriteTransWin" Height="300" Width="400" Foreground="White" Background="#FF76B852">
     <Grid>
-        <TextBlock Name="ToTranslate" HorizontalAlignment="Left" Margin="173,81,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox Name="Translator" HorizontalAlignment="Left" Height="23" Margin="135,117,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button Name="Submit" Content="Submit" HorizontalAlignment="Left" Margin="164,154,0,0" VerticalAlignment="Top" Width="75" Click="Submit_Click"/>
+        <TextBlock Name="ToTranslate" HorizontalAlignment="Center" Margin="0,81,0,0" FontSize="14" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="Translator" HorizontalAlignment="Center" Height="23" Margin="0,117,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" KeyUp="Translator_KeyUp"/>
+        <Button Name="Submit" Content="Submit" HorizontalAlignment="Center" Margin="0,154,0,0" VerticalAlignment="Top" Width="75" Click="Submit_Click"/>
 
     </Grid>
 </Window>

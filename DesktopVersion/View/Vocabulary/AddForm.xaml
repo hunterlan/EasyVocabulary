@@ -10,7 +10,7 @@
         <TextBlock Text="EasyVocabulary" HorizontalAlignment="Center" FontSize="18"/>
         <Separator Background="White" Foreground="White"></Separator>
         <Label HorizontalAlignment="Left" Foreground="White" Content="Foreign word"/>
-        <TextBox x:Name="ForeignBox" Width="400" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox x:Name="ForeignBox" Width="400" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="18"/>
         <Label HorizontalAlignment="Left" Foreground="White" Content="Transcription (optionally)"/>
         <TextBox x:Name="TransBox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" FontSize="18" Width="400"/>
         <Label Foreground="White" Content="Local word"/>

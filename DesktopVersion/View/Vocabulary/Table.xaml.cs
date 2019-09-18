@@ -96,17 +96,23 @@ namespace DesktopVersion
         {
             if (e.Key == Key.Delete)
             {
-                var deletedTemperyRow = (VocabularyView)TableView.SelectedItem;
-                Vocabulary row = new Vocabulary
+                MessageBoxResult result = MessageBox.Show("Are you sure?", "Deleting word", 
+                    MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if(result == MessageBoxResult.Yes)
                 {
-                    ForeignWord = deletedTemperyRow.ForeignWord,
-                    Transcription = deletedTemperyRow.Transcription,
-                    LocalWord = deletedTemperyRow.LocalWord,
-                    UserID = currentUser.Id
-                };
-                row = VocabularyController.FindRow(row, _vocabularyContext);
-                VocabularyController.RemoveRow(_vocabularyContext, row);
-                LoadGrid();
+                    var deletedTemperyRow = (VocabularyView)TableView.SelectedItem;
+                    Vocabulary row = new Vocabulary
+                    {
+                        ForeignWord = deletedTemperyRow.ForeignWord,
+                        Transcription = deletedTemperyRow.Transcription,
+                        LocalWord = deletedTemperyRow.LocalWord,
+                        UserID = currentUser.Id
+                    };
+                    row = VocabularyController.FindRow(row, _vocabularyContext);
+                    VocabularyController.RemoveRow(_vocabularyContext, row);
+                    LoadGrid();
+                } 
             }
         }
 

@@ -86,5 +86,12 @@ namespace DesktopVersion
             else
                 LoadWord();
         }
+
+        private void Translator_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key != Key.Enter) return;
+
+            Submit_Click(sender, e);
+        }
     }
 }
