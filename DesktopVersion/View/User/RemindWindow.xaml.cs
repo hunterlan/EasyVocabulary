@@ -38,8 +38,6 @@ namespace DesktopVersion
                     }
                 }
 
-                //TODO: Сбросить пароль, и задать пользователю новый.
-
                 if(accountUser != null)
                 {
                     // Gmail SMTP server address

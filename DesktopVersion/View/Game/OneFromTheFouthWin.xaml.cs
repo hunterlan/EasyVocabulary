@@ -99,12 +99,14 @@ namespace DesktopVersion
                     buttons[i].Content = rightAnswer;
                 else
                 {
-                    //TODO: There is a bug, when 3 or all buttons right. However, in debug, it's working normal
-                    currentRow = gameController.ChooseRandomRow(_vocabularyContext.Vocabularies.ToList());
-                    if (translation == GameController.FOREIGN_TRANSLATION)
-                        buttons[i].Content = currentRow.LocalWord;
-                    else
-                        buttons[i].Content = currentRow.ForeignWord;
+                    for(int j = 0; j < buttons.Length * 4; j++)
+                    {
+                        currentRow = gameController.ChooseRandomRow(_vocabularyContext.Vocabularies.ToList());
+                        if (translation == GameController.FOREIGN_TRANSLATION)
+                            buttons[i].Content = currentRow.LocalWord;
+                        else
+                            buttons[i].Content = currentRow.ForeignWord;
+                    }
                 }
             }
         }
