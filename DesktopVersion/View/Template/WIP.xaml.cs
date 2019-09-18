@@ -21,7 +21,6 @@ namespace DesktopVersion
     {
         public WIP(DateTime date)
         {
-            //TODO: Thinking about animation window?
             InitializeComponent();
             Info.Text = "Work in progress. Realese date: " + 
                 date.Day + "." + date.Month + "." + date.Year;
