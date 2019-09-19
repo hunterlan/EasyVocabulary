@@ -63,5 +63,17 @@ namespace WebVersion.Controllers
                 return RedirectToAction("Index", "Vocabularies");
             }
         }
+
+        public ActionResult GoToAccountPanel()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult GoToAccountPanel(User user)
+        {
+            UserController.UpdateUser(_userContext, user);
+            return RedirectToAction("Index", "Vocabularies");
+        }
     }
 }

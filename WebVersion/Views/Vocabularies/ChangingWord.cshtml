@@ -10,21 +10,28 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/Content/Form.css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <title>DeleteWord</title>
+    <title>ChangingWord</title>
 </head>
 <body>
     <form method="post">
         <div class="Words">
             <div class="select">
                 <select name="key" required>
-                    <option selected disabled>Deleting row</option>
+                    <option selected disabled>Changing row</option>
                     <option value="1">By foreign word</option>
                     <option value="2">By transcription</option>
                     <option value="3">By local word</option>
                 </select><br /><br />
             </div>
-            <input id="Text1" type="text" name="deletingData" required />
-            <input id="Submit1" type="submit" value="Delete" />
+            Key for finding
+            <input id="Text1" type="text" name="choosedRow" required /><br />
+            Foreign word
+            <input id="Text1" type="text" name="ForeignWord" value="" />
+            Transcription
+            <input id="Text1" type="text" name="Transcription" value="" />
+            Local word
+            <input id="Text1" type="text" name="LocalWord" value="" />
+            <input id="Submit1" type="submit" value="Change row" />
         </div>
     </form>
 </body>

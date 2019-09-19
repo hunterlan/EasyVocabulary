@@ -81,5 +81,20 @@ namespace WebVersion.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult ChangingWord(string key, string choosedRow, Vocabulary changes)
+        {
+            Vocabulary changedRow = new Vocabulary();
+            changedRow = VocabularyController.FindRow(choosedRow, Byte.Parse(key), _vocabularyContext);
+            if (changes.ForeignWord != null && changes.ForeignWord != "")
+                changedRow.ForeignWord = changes.ForeignWord;
+            if (changes.Transcription != null && changes.Transcription != "")
+                changedRow.Transcription = changes.Transcription;
+            if (changes.LocalWord != null && changes.LocalWord != "")
+                changedRow.LocalWord = changes.LocalWord;
+            VocabularyController.UpdateRow(_vocabularyContext, changedRow);
+            return RedirectToAction("Index", "Vocabularies");
+        }
     }
 }
