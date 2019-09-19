@@ -19,7 +19,7 @@ namespace ConsoleVersion
             catch (Exception e)
             {
                 Exceptions.Catching(e);
-            } 
+            }
         }
 
         public static void UpdateRow(VocabularyContext vocabularyContext, Vocabulary newRow)
@@ -50,21 +50,26 @@ namespace ConsoleVersion
 
         public static Vocabulary FindRow(string key, byte foundChoose, VocabularyContext vocabularyContext)
         {
-            Vocabulary foundRow = new Vocabulary();
+            Vocabulary foundRow = null;
 
-            switch (foundChoose)
+            foreach (var vocabulary in vocabularyContext.Vocabularies.ToList())
             {
-                case 1:
-                    foundRow = vocabularyContext.Vocabularies.Single(d => d.ForeignWord == key);
-                    break;
-                case 2:
-                    foundRow = vocabularyContext.Vocabularies.Single(d => d.Transcription == key);
-                    break;
-                case 3:
-                    foundRow = vocabularyContext.Vocabularies.Single(d => d.LocalWord == key);
-                    break;
+                switch (foundChoose)
+                {
+                    case 1:
+                        if (vocabulary.ForeignWord == key)
+                            foundRow = vocabulary;
+                        break;
+                    case 2:
+                        if (vocabulary.Transcription == key)
+                            foundRow = vocabulary;
+                        break;
+                    case 3:
+                        if (vocabulary.LocalWord == key)
+                            foundRow = vocabulary;
+                        break;
+                }
             }
-
             return foundRow;
         }
 
@@ -75,12 +80,12 @@ namespace ConsoleVersion
 
         public static Vocabulary FindRow(Vocabulary row, VocabularyContext vocabularyContext)
         {
-            foreach(var vocabulary in vocabularyContext.Vocabularies.ToList())
+            foreach (var vocabulary in vocabularyContext.Vocabularies.ToList())
             {
                 if (vocabulary.ForeignWord == row.ForeignWord &&
                     vocabulary.Transcription == row.Transcription &&
                     vocabulary.LocalWord == row.LocalWord &&
-                    vocabulary.UserID == row.UserID) 
+                    vocabulary.UserID == row.UserID)
                     return vocabulary;
             }
             return null;
@@ -103,5 +108,5 @@ namespace ConsoleVersion
             }
         }
     }
-    
+
 }

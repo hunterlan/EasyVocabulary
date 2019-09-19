@@ -9,9 +9,48 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/Table.css" />
     <title>Index</title>
 </head>
 <body>
+    <div class="slide_container">
+        <nav id="menu">
+            @if (Model == null || Model.Count == 0)
+            {
+                <ul>
+                    <li><a href="/Vocabularies/AddWord">Add word</a></li>
+                    <br />
+                    <li style="color: grey">Delete word</li>
+                    <br />
+                    <li style="color: grey">Edit line</li>
+                    <br />
+                    <li><a href="/User/Panel">Settings</a></li>
+                    <br />
+                    <li><a href="/Vocablury/ExitFromAccount">Log out</a></li>
+                </ul>
+            }
+            else
+            {
+                <ul>
+                    <li><a href="/Vocabularies/AddWord">Add word</a></li>
+                    <br />
+                    <li><a href="/Vocabularies/DeleteWord">Delete word</a></li>
+                    <br />
+                    <li><a href="/Vocabularies/ChangingWord">Edit line</a></li>
+                    <br />
+                    <li style="color: grey">Find word</li>
+                    <br />
+                    <li><a href="/User/Panel">Settings</a></li>
+                    <br />
+                    <li><a href="/Vocabularies/ExitFromAccount">Log out</a></li>
+                </ul>
+            }
+
+        </nav>
+
+        <div id="btn"><span></span></div>
+    </div>
+
     <main role="main">
         @if (Model == null || Model.Count == 0)
         {
@@ -33,5 +72,23 @@
                         webGrid.Column("LocalWord", "Local words")))
         }
     </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var openBtn = $('#btn'),
+                slideMenu = $('#menu'),
+                layer = $('<div />').addClass('layer');
+            openBtn.on("click", function () {
+                if (slideMenu.is(':hidden')) {
+                    layer.appendTo('body');
+                    slideMenu.slideDown(300);
+                } else {
+                    slideMenu.slideUp(300);
+                    layer.remove();
+                }
+            });
+        });
+    </script>
+    
 </body>
 </html>
