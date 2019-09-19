@@ -56,7 +56,7 @@ namespace WebVersion.Controllers
         {
             Session.Abandon();
             HttpContext.Response.Cookies["UserID"].Value = null;
-            return RedirectToAction("Index", "User");
+            return RedirectToAction("Index", "Start");
         }
 
         public ActionResult DeleteWord()
@@ -74,6 +74,11 @@ namespace WebVersion.Controllers
                 return RedirectToAction("Index");
             }
 
+            return View();
+        }
+
+        public ActionResult ChangingWord()
+        {
             return View();
         }
     }

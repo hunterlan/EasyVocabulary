@@ -1,0 +1,34 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/Error.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <title>AccessDenied</title>
+</head>
+<body>
+    <div class="Error">
+        <p>Error!</p>
+        <img src="~/Content/Icons/403.png" width="256" height="256" />
+        <p>Access denied!</p>
+        @if (Session["User"] != null)
+        {
+            <a href='@Url.Action("Index", "Vocabularies")'>
+                <button>Go back</button>
+            </a>
+        }
+        else
+        {
+            <a href='@Url.Action("Index", "Start")'>
+                <button>Go back</button>
+            </a>
+        }
+    </div>
+</body>
+</html>

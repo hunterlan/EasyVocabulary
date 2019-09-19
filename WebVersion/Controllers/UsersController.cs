@@ -1,6 +1,7 @@
 ﻿using ConsoleVersion.Controllers;
 using ConsoleVersion.Helper;
 using ConsoleVersion.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -53,7 +54,8 @@ namespace WebVersion.Controllers
         {
             if (UserController.AddUser(_userContext, ref newUser) == false)
             {
-                return View();
+                Exceptions.IsError = 0;
+                throw new Exception(Exceptions.ErrorMessage);
             }
             else
             {

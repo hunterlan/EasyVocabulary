@@ -1,0 +1,34 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>HttpError</title>
+</head>
+<body>
+    <div class="Article">
+        <p>Error!</p>
+    </div>
+    <div class="ContentError">
+        <img src="~/Content/Icons/HttpError.png" width="256" height="256" />
+        <p>Some error, which is not interesting...</p>
+        @if (Session["User"] != null)
+        {
+            <a href='@Url.Action("Index", "Vocabularies")'>
+                <button>Go back</button>
+            </a>
+        }
+        else
+        {
+            <a href='@Url.Action("Index", "Sttart")'>
+                <button>Go back</button>
+            </a>
+        }
+    </div>
+</body>
+</html>

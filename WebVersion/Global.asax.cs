@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using WebVersion.Controllers;
 
 namespace WebVersion
 {
@@ -17,9 +18,63 @@ namespace WebVersion
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
-        protected void Session_Start(Object sender, EventArgs e)
+        protected void Application_Error(Object sender, EventArgs e)
         {
-            Session["init"] = 0;
+            var httpContext = ((MvcApplication)sender).Context;
+            var currentController = string.Empty;
+            var currentAction = string.Empty;
+            var currentRouteData = RouteTable.Routes.GetRouteData(new HttpContextWrapper(httpContext));
+
+            if (currentRouteData != null)
+            {
+                if (!string.IsNullOrEmpty(currentRouteData.Values["controller"].ToString()))
+                {
+                    currentController = currentRouteData.Values["controller"].ToString();
+                }
+
+                if (!string.IsNullOrEmpty(currentRouteData.Values["action"].ToString()))
+                {
+                    currentAction = currentRouteData.Values["action"].ToString();
+                }
+            }
+
+            // пойманное исключение
+            var ex = Server.GetLastError();
+
+            // ну а дальше подготовка к вызову подходящего метода контроллера ошибок
+            var controller = new ErrorsController();
+            var routeData = new RouteData();
+            // метод по умолчанию в контроллере
+            var action = "Index";
+
+            // если это ошибки HTTP, а не моего кода, то для них свои представления
+            if (ex is HttpException)
+            {
+                switch (((HttpException)ex).GetHttpCode())
+                {
+                    case 403:
+                        action = "AccessDenied";
+                        break;
+                    case 404:
+                        action = "NotFound";
+                        break;
+                    default:
+                        action = "HttpError";
+                        break;
+                        // можно добавить свои методы контроллера для любых кодов ошибок
+                }
+            }
+
+            httpContext.ClearError();
+            httpContext.Response.Clear();
+            httpContext.Response.StatusCode = ex is HttpException ? ((HttpException)ex).GetHttpCode() : 500;
+            httpContext.Response.TrySkipIisCustomErrors = true;
+
+            routeData.Values["controller"] = "Errors";
+            routeData.Values["action"] = action;
+
+            controller.ViewData.Model = new HandleErrorInfo(ex, currentController, currentAction);
+            ((IController)controller).Execute(new RequestContext(new HttpContextWrapper(httpContext), routeData));
         }
     }
 }

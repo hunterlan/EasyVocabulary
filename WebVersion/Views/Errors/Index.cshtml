@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/Error.css" />
+    <title>Index</title>
+</head>
+<body>
+    <div class="Error">
+        <p>Error!</p>
+        <p>Something went wrong...</p>
+        @if (Session["User"] != null)
+        {
+            <a href='@Url.Action("Index", "Vocabularies")'>
+                <button>Go back</button>
+            </a>
+        }
+        else
+        {
+            <a href='@Url.Action("Index", "Start")'>
+                <button>Go back</button>
+            </a>
+        }
+    </div>
+</body>
+</html>

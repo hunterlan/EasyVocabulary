@@ -138,6 +138,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\StartController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\VocabulariesController.cs" />
@@ -147,8 +148,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Error.css" />
     <Content Include="Content\Form.css" />
+    <Content Include="Content\Icons\403.png" />
+    <Content Include="Content\Icons\404.png" />
     <Content Include="Content\Icons\books.png" />
+    <Content Include="Content\Icons\HttpError.png" />
     <Content Include="Content\Index.css" />
     <Content Include="Content\Sign.css" />
     <Content Include="Content\Table.css" />
@@ -180,6 +185,10 @@
     <None Include="packages.config" />
     <Content Include="Views\Vocabularies\AddWord.cshtml" />
     <Content Include="Views\Vocabularies\DeleteWord.cshtml" />
+    <Content Include="Views\Errors\Index.cshtml" />
+    <Content Include="Views\Errors\AccessDenied.cshtml" />
+    <Content Include="Views\Errors\NotFound.cshtml" />
+    <Content Include="Views\Errors\HttpError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ConsoleVersion\ConsoleVersion.csproj">
