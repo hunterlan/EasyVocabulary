@@ -5,13 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopVersion"
         mc:Ignorable="d"
-        Title="OneFromTheFouthWin" Height="300" Width="400">
+        Title="OneFromTheFouthWin" Height="300" Width="400" Foreground="White" Background="#FF76B852">
     <Grid>
-        <TextBlock Name ="TranslateBox" HorizontalAlignment="Left" Margin="163,101,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-        <Button Name="First" Content="" HorizontalAlignment="Left" Margin="98,144,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Name="Second" Content="" HorizontalAlignment="Left" Margin="206,144,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Name="Third" Content="" HorizontalAlignment="Left" Margin="98,179,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Name="Fourth" Content="" HorizontalAlignment="Left" Margin="206,178,0,0" VerticalAlignment="Top" Width="75"/>
-
+        <TextBlock Name ="TranslateBox" HorizontalAlignment="Center" Margin="0,101,0,0" TextWrapping="Wrap" FontSize="16" Text="TextBlock" VerticalAlignment="Top"/>
+        <Button Name="First" Content="" HorizontalAlignment="Center" Margin="0,144,120,0" VerticalAlignment="Top" Width="100"/>
+        <Button Name="Second" Content="" HorizontalAlignment="Center" Margin="125,144,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button Name="Third" Content="" HorizontalAlignment="Center" Margin="0,179,120,0" VerticalAlignment="Top" Width="100"/>
+        <Button Name="Fourth" Content="" HorizontalAlignment="Center" Margin="125,178,0,0" VerticalAlignment="Top" Width="100"/>
     </Grid>
 </Window>

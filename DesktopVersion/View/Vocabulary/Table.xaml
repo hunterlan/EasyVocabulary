@@ -24,6 +24,6 @@
                 <MenuItem x:Name="Help" Background="#FF76B852" Header="Help" Click="Help_Click"/>
             </MenuItem>
         </Menu>
-        <DataGrid x:Name="TableView" Margin="10,20,10,10" AutoGenerateColumns="True" PreviewKeyDown="TableView_PreviewKeyDown" FontSize="14" Background="White"/>
+        <DataGrid x:Name="TableView" CanUserAddRows="False" Margin="10,20,10,10" AutoGenerateColumns="True" PreviewKeyDown="TableView_PreviewKeyDown" FontSize="14" Background="White"/>
     </Grid>
 </Window>

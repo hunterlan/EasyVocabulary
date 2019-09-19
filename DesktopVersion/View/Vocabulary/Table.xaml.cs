@@ -179,5 +179,6 @@ namespace DesktopVersion
             HelpWindow window = new HelpWindow();
             window.ShowDialog();
         }
+
     }
 }

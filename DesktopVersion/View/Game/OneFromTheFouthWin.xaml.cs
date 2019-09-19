@@ -27,7 +27,7 @@ namespace DesktopVersion
         User currentUser;
         GameController gameController;
         SettingGame settingGame;
-        
+
         int currentPoints;
         string rightAnswer;
         int translation;
@@ -79,7 +79,7 @@ namespace DesktopVersion
                                     _vocabularyContext.Vocabularies.ToList(), ref translation);
             _ = translation == GameController.FOREIGN_TRANSLATION ?
                     word = currentRow.ForeignWord : (word = currentRow.LocalWord);
-            if(translation == GameController.FOREIGN_TRANSLATION)
+            if (translation == GameController.FOREIGN_TRANSLATION)
             {
                 word = currentRow.ForeignWord;
                 rightAnswer = currentRow.LocalWord;
@@ -92,23 +92,34 @@ namespace DesktopVersion
             TranslateBox.Text = "Translate to word " + word;
 
             Random rand = new Random();
+            List<Vocabulary> usedRows = new List<Vocabulary>();
             int elemID = rand.Next(buttons.Length);
-            for(int i = 0; i < buttons.Length; i++)
+            usedRows.Add(currentRow);
+            for (int i = 0; i < buttons.Length; i++)
             {
-                if (i == elemID)
-                    buttons[i].Content = rightAnswer;
-                else
+                currentRow = gameController.ChooseRandomRow(_vocabularyContext.Vocabularies.ToList());
+
+                for (int j = 0; j < usedRows.Count; j++)
                 {
-                    for(int j = 0; j < buttons.Length * 4; j++)
+                    if (currentRow == usedRows[j])
                     {
                         currentRow = gameController.ChooseRandomRow(_vocabularyContext.Vocabularies.ToList());
-                        if (translation == GameController.FOREIGN_TRANSLATION)
-                            buttons[i].Content = currentRow.LocalWord;
-                        else
-                            buttons[i].Content = currentRow.ForeignWord;
+                        j = 0;
                     }
                 }
+
+                usedRows.Add(currentRow);
+
+                if (translation == GameController.FOREIGN_TRANSLATION)
+                {
+                    buttons[i].Content = currentRow.LocalWord;
+                }
+                else
+                {
+                    buttons[i].Content = currentRow.ForeignWord;
+                }
             }
+            buttons[elemID].Content = rightAnswer;
         }
 
         private void ChoosedAnswer(object sender, RoutedEventArgs e)

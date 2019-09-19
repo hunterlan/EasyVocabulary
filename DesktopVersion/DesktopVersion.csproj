@@ -68,9 +68,6 @@
     <Compile Include="View\User\RemindWindow.xaml.cs">
       <DependentUpon>RemindWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Game\UserGameSetting.xaml.cs">
-      <DependentUpon>UserGameSetting.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Template\WIP.xaml.cs">
       <DependentUpon>WIP.xaml</DependentUpon>
     </Compile>
@@ -104,10 +101,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\User\RemindWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Game\UserGameSetting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
