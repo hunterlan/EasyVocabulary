@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Text.RegularExpressions;
 using ConsoleVersion.Helper;
 using ConsoleVersion.Models;
 
@@ -105,6 +106,14 @@ namespace ConsoleVersion.Controllers
                 if (elem.Nickname == user.Nickname)
                     return true;
             }
+            return false;
+        }
+
+        public static bool IsPasswordSecure(string password)
+        {
+            Regex passwordCheck = new Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])");
+            if (passwordCheck.IsMatch(password))
+                return true;
             return false;
         }
     }

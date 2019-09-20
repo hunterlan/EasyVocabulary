@@ -57,16 +57,23 @@ namespace DesktopVersion
             Registration registrationWindow = new Registration();
             if (registrationWindow.ShowDialog() == true)
             {
-                if (UserController.AddUser(_userContext, ref registrationWindow.user) == false)
+                if(UserController.IsPasswordSecure(registrationWindow.user.Password))
                 {
-                    MessageBox.Show(Exceptions.ErrorMessage);
-                    Exceptions.IsError = 0;
+                    if (UserController.AddUser(_userContext, ref registrationWindow.user) == false)
+                    {
+                        MessageBox.Show(Exceptions.ErrorMessage);
+                        Exceptions.IsError = 0;
+                    }
+                    else
+                    {
+                        Table vocabularyWindow = new Table(registrationWindow.user, _userContext);
+                        vocabularyWindow.Show();
+                        Close();
+                    }
                 }
-                else
+               else
                 {
-                    Table vocabularyWindow = new Table(registrationWindow.user, _userContext);
-                    vocabularyWindow.Show();
-                    Close();
+                    MessageBox.Show("Password must contain 1 upper case and 1 numeric!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
