@@ -18,8 +18,8 @@
         </Grid>
         <Grid Margin="10 10 0 0">
             <CheckBox Name="UseCookie" FontSize="16" VerticalAlignment="Center" Foreground="White" Content="Remember me"/>
-            <TextBlock Margin="0 0 10 0" VerticalAlignment="Center" HorizontalAlignment="Right">
-                <Hyperlink NavigateUri="Hyperlink_Click_1" FontSize="16" Foreground="White">Need sign up?</Hyperlink>
+            <TextBlock Margin="0 0 10 0" VerticalAlignment="Center" FontSize="16" HorizontalAlignment="Right" Text="Need sign up?">
+                <Hyperlink NavigateUri="Hyperlink_Click_1" Foreground="White"/>
             </TextBlock>
         </Grid>
     </StackPanel>

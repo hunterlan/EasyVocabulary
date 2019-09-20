@@ -19,7 +19,7 @@ namespace DesktopVersion
         public MainWindow()
         {
             InitializeComponent();
-            Internalization();
+            //Internalization();
         }
 
         private void Internalization()
