@@ -5,6 +5,8 @@ using System.Windows.Threading;
 using ConsoleVersion.Controllers;
 using ConsoleVersion.Helper;
 using ConsoleVersion.Models;
+using ConsoleVersion.Resources;
+using System.Globalization;
 
 namespace DesktopVersion
 {
@@ -17,6 +19,12 @@ namespace DesktopVersion
         public MainWindow()
         {
             InitializeComponent();
+            Internalization();
+        }
+
+        private void Internalization()
+        {
+            SignIn.Content = Resource.SignIn;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
