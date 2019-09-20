@@ -50,16 +50,24 @@ namespace DesktopVersion
                 Password = currentUser.Password
             };
 
-            if (NewPassword.Password == ConfirmPassword.Password)
-                updatedUser.Password = ConfirmPassword.Password;
-
-            updatedUser.Password = SecurePasswordHasher.Hash(updatedUser.Password);
-            if(UserController.UpdateUser(_userContext, updatedUser) == true)
-                ShowUserData();
+            if(updatedUser.Nickname == "" || updatedUser.Email == "")
+                MessageBox.Show("Nickname and email boxs can't be empty!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             else
             {
-                MessageBox.Show(Exceptions.ErrorMessage, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
-                Exceptions.IsError = 0;
+                if (NewPassword.Password != ConfirmPassword.Password)
+                    MessageBox.Show("Two passwords are different", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
+                {
+                    updatedUser.Password = ConfirmPassword.Password;
+                    updatedUser.Password = SecurePasswordHasher.Hash(updatedUser.Password);
+                    if (UserController.UpdateUser(_userContext, updatedUser) == true)
+                        ShowUserData();
+                    else
+                    {
+                        MessageBox.Show(Exceptions.ErrorMessage, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        Exceptions.IsError = 0;
+                    }
+                }
             }
         }
 
