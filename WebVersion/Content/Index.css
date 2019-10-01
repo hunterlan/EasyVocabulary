@@ -4,26 +4,65 @@
     display: inline
 }
 
-h1, p{
+h1, p {
     margin-top: 16px;
     text-align: center
 }
+
 h3 {
     margin-left: 5%;
     margin-right: 5%;
 }
+
 .firstHalf {
+    left: 0;
+    top: 0;
     background: #76b852;
     color: white;
     width: 50%;
     height: 100%;
 }
+
 .secondHalf {
+    align-items: center;
     color: #76b852;
     text-align: center;
-    vertical-align: central;
+    vertical-align: middle;
     margin-left: 50%;
     width: 50%;
     height: 100%;
 }
 
+.firstImage {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+}
+
+    .firstImage img {
+        flex-shrink: 0;
+    }
+
+.firstImage h3{
+    display: inline;
+    margin: 0;
+}
+
+button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #FFFFFF;
+    width: 50%;
+    border: solid;
+    border-width: 1px;
+    padding: 15px;
+    color: #4CAF50;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    margin-top: 1%;
+}
