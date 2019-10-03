@@ -1,19 +1,12 @@
 ﻿using ConsoleVersion;
+using ConsoleVersion.Controllers;
 using ConsoleVersion.Helper;
 using ConsoleVersion.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace DesktopVersion
 {
@@ -148,16 +141,43 @@ namespace DesktopVersion
 
         }
 
+        private int CountWords(List<Vocabulary> vocabularies)
+        {
+            int count = 0;
+
+            foreach(var row in vocabularies)
+            {
+                if (row.UserID == currentUser.Id)
+                    count++;
+            }
+
+            return count;
+        }
+
         private void GameTranslation_Click(object sender, RoutedEventArgs e)
         {
-            WriteTransWin window = new WriteTransWin(_vocabularyContext, currentUser);
-            window.ShowDialog();
+            if(CountWords(_vocabularyContext.Vocabularies.ToList()) < GameController.MIN_COUNT)
+            {
+                MessageBox.Show("Vocabulary must contain at least 20 words", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                WriteTransWin window = new WriteTransWin(_vocabularyContext, currentUser);
+                window.ShowDialog();
+            }
         }
 
         private void OneFromTheFouth_Click(object sender, RoutedEventArgs e)
         {
-            OneFromTheFouthWin window = new OneFromTheFouthWin(_vocabularyContext, currentUser);
-            window.ShowDialog();
+            if (CountWords(_vocabularyContext.Vocabularies.ToList()) < GameController.MIN_COUNT)
+            {
+                MessageBox.Show("Vocabulary must contain at least 20 words", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                OneFromTheFouthWin window = new OneFromTheFouthWin(_vocabularyContext, currentUser);
+                window.ShowDialog();
+            }
         }
 
         private void TournTableShow_Click(object sender, RoutedEventArgs e)
@@ -169,7 +189,7 @@ namespace DesktopVersion
         private void Matching_Click(object sender, RoutedEventArgs e)
         {
             //TODO: Make this game function
-            DateTime release = new DateTime(2019, 9, 28);
+            DateTime release = new DateTime(2019, 10, 10);
             WIP window = new WIP(release);
             window.ShowDialog();
         }

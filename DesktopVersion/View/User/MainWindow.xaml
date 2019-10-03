@@ -13,13 +13,13 @@
         <Grid Margin="10 10 0 0">
             <Button Name="SignIn" Width="75" FontSize="14" HorizontalAlignment="Left" Content="Log in" Click="Button_Click"/>
             <TextBlock Margin="0 0 10 0" VerticalAlignment="Center" HorizontalAlignment="Right">
-                <Hyperlink NavigateUri="Hyperlink_Click" FontSize="16" Foreground="White">Forget the password?</Hyperlink>
+                <Hyperlink NavigateUri="Hyperlink_Click" FontSize="16" Foreground="White" Click="Hyperlink_Click_1">Forget the password?</Hyperlink>
             </TextBlock>
         </Grid>
         <Grid Margin="10 10 0 0">
             <CheckBox Name="UseCookie" FontSize="16" VerticalAlignment="Center" Foreground="White" Content="Remember me"/>
-            <TextBlock Margin="0 0 10 0" VerticalAlignment="Center" FontSize="16" HorizontalAlignment="Right" Text="Need sign up?">
-                <Hyperlink NavigateUri="Hyperlink_Click_1" Foreground="White"/>
+            <TextBlock Margin="0 0 10 0" VerticalAlignment="Center" FontSize="16" HorizontalAlignment="Right">
+                <Hyperlink NavigateUri="Hyperlink_Click_1" Foreground="White" Click="Hyperlink_Click">Need sign up?</Hyperlink>
             </TextBlock>
         </Grid>
     </StackPanel>

@@ -63,27 +63,33 @@ namespace DesktopVersion
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
             Registration registrationWindow = new Registration();
-            if (registrationWindow.ShowDialog() == true)
+            bool ready = false;
+            do
             {
-                if(UserController.IsPasswordSecure(registrationWindow.user.Password))
+                if (registrationWindow.ShowDialog() == true)
                 {
-                    if (UserController.AddUser(_userContext, ref registrationWindow.user) == false)
+                    if (UserController.IsPasswordSecure(registrationWindow.user.Password))
                     {
-                        MessageBox.Show(Exceptions.ErrorMessage);
-                        Exceptions.IsError = 0;
+                        if (UserController.AddUser(_userContext, ref registrationWindow.user) == false)
+                        {
+                            MessageBox.Show(Exceptions.ErrorMessage);
+                            Exceptions.IsError = 0;
+                        }
+                        else
+                        {
+                            Table vocabularyWindow = new Table(registrationWindow.user, _userContext);
+                            vocabularyWindow.Show();
+                            Close();
+                            ready = true;
+                        }
                     }
                     else
                     {
-                        Table vocabularyWindow = new Table(registrationWindow.user, _userContext);
-                        vocabularyWindow.Show();
-                        Close();
+                        MessageBox.Show("Password must contain 1 upper case and 1 numeric!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+
                     }
                 }
-               else
-                {
-                    MessageBox.Show("Password must contain 1 upper case and 1 numeric!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
+            } while (ready == false);
         }
 
         private void Hyperlink_Click_1(object sender, RoutedEventArgs e)

@@ -24,9 +24,10 @@ namespace DesktopVersion
     public partial class OneFromTheFouthWin : Window
     {
         VocabularyContext _vocabularyContext;
+        List<Vocabulary> words;
         User currentUser;
-        GameController gameController;
         SettingGame settingGame;
+        GameController gameController;
 
         int currentPoints;
         string rightAnswer;
@@ -34,17 +35,32 @@ namespace DesktopVersion
         TimerCallback tm;
         Timer timer;
         Button[] buttons;
+        private List<Vocabulary> UserVocabulary(List<Vocabulary> voc)
+        {
+            List<Vocabulary> result = new List<Vocabulary>();
+
+            foreach(var row in voc)
+            {
+                if (row.UserID == currentUser.Id)
+                    result.Add(row);
+            }
+
+            return result;
+        }
         public OneFromTheFouthWin(VocabularyContext vocabularyContext, User user)
         {
             InitializeComponent();
 
             currentUser = user;
             _vocabularyContext = vocabularyContext;
-            settingGame = new SettingGame(_vocabularyContext);
+            words = UserVocabulary(_vocabularyContext.Vocabularies.ToList());
+            //settingGame = new SettingGame(_vocabularyContext);
             gameController = new GameController();
             tm = new TimerCallback(gameController.TimerOver);
             currentPoints = 0;
             buttons = InittializeButton();
+            settingGame = new SettingGame(_vocabularyContext);
+
             StartGame();
         }
 
@@ -76,7 +92,7 @@ namespace DesktopVersion
             Vocabulary currentRow;
 
             currentRow = gameController.ChooseRandomRow(
-                                    _vocabularyContext.Vocabularies.ToList(), ref translation);
+                                    words, ref translation);
             _ = translation == GameController.FOREIGN_TRANSLATION ?
                     word = currentRow.ForeignWord : (word = currentRow.LocalWord);
             if (translation == GameController.FOREIGN_TRANSLATION)
@@ -97,13 +113,13 @@ namespace DesktopVersion
             usedRows.Add(currentRow);
             for (int i = 0; i < buttons.Length; i++)
             {
-                currentRow = gameController.ChooseRandomRow(_vocabularyContext.Vocabularies.ToList());
+                currentRow = gameController.ChooseRandomRow(words);
 
                 for (int j = 0; j < usedRows.Count; j++)
                 {
                     if (currentRow == usedRows[j])
                     {
-                        currentRow = gameController.ChooseRandomRow(_vocabularyContext.Vocabularies.ToList());
+                        currentRow = gameController.ChooseRandomRow(words);
                         j = 0;
                     }
                 }
@@ -125,11 +141,14 @@ namespace DesktopVersion
         private void ChoosedAnswer(object sender, RoutedEventArgs e)
         {
             Button btnClicker = (Button)sender;
+            const int THIS_GAME = 1;
             if ((string)btnClicker.Content == rightAnswer)
                 currentPoints += 10;
             if (gameController.isTimerOver)
             {
+                string typeOfGame = settingGame.TYPE_GAME[THIS_GAME];
                 MessageBox.Show("Count of points is " + currentPoints);
+                GameController.WriteToTable(currentPoints, currentUser, typeOfGame);
                 Close();
             }
             LoadWord();

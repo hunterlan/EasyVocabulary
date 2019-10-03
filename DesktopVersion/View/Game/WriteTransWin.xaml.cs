@@ -26,6 +26,7 @@ namespace DesktopVersion
         VocabularyContext _vocabularyContext;
         User currentUser;
         GameController gameController;
+        List<Vocabulary> words;
         SettingGame settingGame;
         Vocabulary currentRow;
         int currentPoints;
@@ -39,12 +40,26 @@ namespace DesktopVersion
 
             currentUser = user;
             _vocabularyContext = vocabularyContext;
+            words = UserVocabulary(_vocabularyContext.Vocabularies.ToList());
             settingGame = new SettingGame(_vocabularyContext);
             gameController = new GameController();
             tm = new TimerCallback(gameController.TimerOver);
             currentPoints = 0;
 
             StartGame();
+        }
+
+        private List<Vocabulary> UserVocabulary(List<Vocabulary> voc)
+        {
+            List<Vocabulary> result = new List<Vocabulary>();
+
+            foreach (var row in voc)
+            {
+                if (row.UserID == currentUser.Id)
+                    result.Add(row);
+            }
+
+            return result;
         }
 
         public void StartGame()
@@ -61,7 +76,7 @@ namespace DesktopVersion
             string word;
 
             currentRow = gameController.ChooseRandomRow(
-                                    _vocabularyContext.Vocabularies.ToList(), ref translation);
+                                    words, ref translation);
             _ = translation == GameController.FOREIGN_TRANSLATION ?
                 word = currentRow.ForeignWord : (word = currentRow.LocalWord);
 
