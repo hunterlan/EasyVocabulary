@@ -1,3 +1,4 @@
+using ConsoleVersion.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,6 +70,7 @@ namespace WebVersion
             httpContext.Response.Clear();
             httpContext.Response.StatusCode = ex is HttpException ? ((HttpException)ex).GetHttpCode() : 500;
             httpContext.Response.TrySkipIisCustomErrors = true;
+            Exceptions.ErrorMessage = ex.Message;
 
             routeData.Values["controller"] = "Errors";
             routeData.Values["action"] = action;

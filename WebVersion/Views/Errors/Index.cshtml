@@ -1,4 +1,5 @@
 ﻿
+
 @{
     Layout = null;
 }
@@ -12,9 +13,12 @@
     <title>Index</title>
 </head>
 <body>
-    <div class="Error">
+    <div class="Article">
         <p>Error!</p>
-        <p>Something went wrong...</p>
+    </div>
+    <div class="ContentError">
+        <img src="~/Content/Icons/HttpError.png" width="256" height="256" />
+        <p>@ViewBag.TextError</p>
         @if (Session["User"] != null)
         {
             <a href='@Url.Action("Index", "Vocabularies")'>

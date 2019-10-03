@@ -19,9 +19,16 @@ namespace WebVersion.Controllers
             _vocabularyContext = new VocabularyContext();
         }
 
+        public void IsUserAuth(User user)
+        {
+            if (user == null)
+                throw new Exception("You're not authorized!");
+        }
+
         public ActionResult Index()
         {
             User valueSession = (User)Session["User"];
+            IsUserAuth(valueSession);
             userID = valueSession.Id;
             List<Vocabulary> rows = new List<Vocabulary>();
             foreach (var row in _vocabularyContext.Vocabularies.ToList())
@@ -41,12 +48,14 @@ namespace WebVersion.Controllers
         public ActionResult AddWord(Vocabulary newWord)
         {
             User valueSession = (User)Session["User"];
+            IsUserAuth(valueSession);
             userID = valueSession.Id;
             newWord.UserID = userID;
             VocabularyController.AddRow(_vocabularyContext, newWord);
             if (Exceptions.IsError == 1)
             {
-                return View();
+                Exceptions.IsError = 0;
+                throw new Exception(Exceptions.ErrorMessage);
             }
             else
                 return RedirectToAction("Index");
@@ -66,6 +75,9 @@ namespace WebVersion.Controllers
         [HttpPost]
         public ActionResult DeleteWord(string key, string deletingData)
         {
+            User valueSession = (User)Session["User"];
+            IsUserAuth(valueSession);
+
             var row = VocabularyController.FindRow(deletingData, Byte.Parse(key), _vocabularyContext);
 
             if (row != null)
@@ -86,6 +98,8 @@ namespace WebVersion.Controllers
         public ActionResult ChangingWord(string key, string choosedRow, Vocabulary changes)
         {
             Vocabulary changedRow = new Vocabulary();
+            User valueSession = (User)Session["User"];
+            IsUserAuth(valueSession);
 
             changedRow = VocabularyController.FindRow(choosedRow, Byte.Parse(key), _vocabularyContext);
             if (changes.ForeignWord != null && changes.ForeignWord != "")

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ConsoleVersion.Helper;
 
 namespace WebVersion.Controllers
 {
@@ -11,7 +12,8 @@ namespace WebVersion.Controllers
         // GET: Errors
         public ActionResult Index()
         {
-            return View("Error");
+            ViewBag.textError = Exceptions.ErrorMessage;
+            return View("Index");
         }
 
         public ViewResult AccessDenied()
