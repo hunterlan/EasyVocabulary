@@ -70,7 +70,8 @@ namespace DesktopVersion
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Exception в лицо!");
+                MessageBox.Show(ex.Message);
+                Close();
             }
         }
     }

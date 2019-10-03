@@ -86,9 +86,9 @@ namespace DesktopVersion
         {
             AddForm add = new AddForm(_vocabularyContext, currentUser);
             if (add.ShowDialog() == true)
-                MessageBox.Show("Строка добавлена успешно!");
+                MessageBox.Show("Row added successfully!");
             else
-                MessageBox.Show("Операция отменена");
+                MessageBox.Show("Operation canceled");
             LoadGrid();
         }
 
