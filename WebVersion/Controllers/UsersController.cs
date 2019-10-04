@@ -100,6 +100,7 @@ namespace WebVersion.Controllers
                     accountUser.Nickname = item.Nickname;
                     accountUser.Password = UserController.GeneratePassword();
                     accountUser.Email = email;
+                    break;
                 }
             }
 
