@@ -66,6 +66,10 @@ namespace WebVersion.Controllers
 
         public ActionResult GoToAccountPanel()
         {
+            User valueSession = (User)Session["User"];
+            if (valueSession == null)
+                throw new Exception("You're not authorized!");
+
             return View();
         }
 
