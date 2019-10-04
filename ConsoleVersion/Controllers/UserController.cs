@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using ConsoleVersion.Helper;
 using ConsoleVersion.Models;
+using EASendMail;
 
 namespace ConsoleVersion.Controllers
 {
@@ -115,6 +116,32 @@ namespace ConsoleVersion.Controllers
             if (passwordCheck.IsMatch(password))
                 return true;
             return false;
+        }
+
+        public static bool RestoreUser(User accountUser, UserContext userContext)
+        {
+            // Gmail SMTP server address
+            SmtpServer oServer = new SmtpServer("smtp.gmail.com");
+            // Using 587 port, you can also use 465 port
+            oServer.Port = 587;
+            oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
+            oServer.User = "EasyTeamHelp@gmail.com";
+            oServer.Password = "20002809ksoh"; //TODO: Hide it
+
+            SmtpMail oMail = new SmtpMail("TryIt");
+            oMail.From = oServer.User;
+            oMail.To = accountUser.Email;
+            oMail.Subject = "Restroring account";
+            oMail.TextBody = "Your login: " + accountUser.Nickname + "\nYour new password: " + accountUser.Password +
+                "\n\nRespectfully, \nEasy Team";
+
+            SmtpClient oSmtp = new SmtpClient();
+            oSmtp.SendMail(oServer, oMail);
+
+            accountUser.Password = SecurePasswordHasher.Hash(accountUser.Password);
+            UpdateUser(userContext, accountUser);
+
+            return true;
         }
     }
 }
