@@ -38,6 +38,7 @@ namespace DesktopVersion
                             accountUser.Nickname = item.Nickname;
                             accountUser.Password = UserController.GeneratePassword();
                             accountUser.Email = EmailBox.Text;
+                            break;
                         }
                     }
 
