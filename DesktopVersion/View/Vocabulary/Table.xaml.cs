@@ -4,6 +4,7 @@ using ConsoleVersion.Helper;
 using ConsoleVersion.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -70,9 +71,16 @@ namespace DesktopVersion
 
         private void ExitAcc_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow window = new MainWindow();
-            window.Show();
-            Close();
+            try
+            {
+                File.Delete("user.dat");
+            }
+            finally
+            {
+                MainWindow window = new MainWindow();
+                window.Show();
+                Close();
+            }
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)

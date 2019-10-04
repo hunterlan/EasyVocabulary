@@ -192,6 +192,7 @@
     <Content Include="Views\Errors\HttpError.cshtml" />
     <Content Include="Views\Users\GoToAccountPanel.cshtml" />
     <Content Include="Views\Vocabularies\ChangingWord.cshtml" />
+    <None Include="Properties\PublishProfiles\easyvocabulary - Web Deploy.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ConsoleVersion\ConsoleVersion.csproj">

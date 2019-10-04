@@ -7,6 +7,9 @@ using ConsoleVersion.Helper;
 using ConsoleVersion.Models;
 using ConsoleVersion.Resources;
 using System.Globalization;
+using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace DesktopVersion
 {
@@ -16,15 +19,59 @@ namespace DesktopVersion
     public partial class MainWindow : Window
     {
         private static UserContext _userContext = new UserContext();
+        private User sessionUser;
+        private readonly string PATH = "user.dat";
         public MainWindow()
         {
             InitializeComponent();
+            sessionUser = LoadUser();
+            if (sessionUser != null)
+                ShowVocabulary(sessionUser);
             //Internalization();
         }
 
-        private void Internalization()
+        //private void Internalization()
+        //{
+        //    SignIn.Content = Resource.SignIn;
+        //}
+
+        private bool SaveUser(User user)
         {
-            SignIn.Content = Resource.SignIn;
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            try
+            {
+                using (FileStream fs = new FileStream(PATH, FileMode.Create))
+                {
+                    formatter.Serialize(fs, user);
+                }
+                return true;
+            }
+            catch(Exception ex)
+            {
+                Exceptions.Catching(ex);
+            }
+
+            return false;
+        }
+
+        private User LoadUser()
+        {
+            User loadedUser = null;
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            try
+            {
+                using(FileStream fs = new FileStream(PATH, FileMode.Open))
+                {
+                   loadedUser = (User)formatter.Deserialize(fs);
+                }
+            }
+            catch(Exception ex)
+            {
+                Exceptions.Catching(ex);
+            }
+            return loadedUser;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -52,12 +99,18 @@ namespace DesktopVersion
                 }
                 else
                 {
-                    Table vocabularyWindow = new Table(currentUser, _userContext);
-                    vocabularyWindow.Show();
-                    Close();
+                    if (UseCookie.IsChecked == true)
+                        SaveUser(currentUser);
+                    ShowVocabulary(currentUser);
                 }
             }
-            
+        }
+
+        private void ShowVocabulary(User currentUser)
+        {
+            Table vocabularyWindow = new Table(currentUser, _userContext);
+            vocabularyWindow.Show();
+            Close();
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
