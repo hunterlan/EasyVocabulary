@@ -79,5 +79,17 @@ namespace WebVersion.Controllers
             UserController.UpdateUser(_userContext, user);
             return RedirectToAction("Index", "Vocabularies");
         }
+
+        public ActionResult Restore()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Restore(String email)
+        {
+
+            return RedirectToAction("Index", "Start");
+        }
     }
 }
