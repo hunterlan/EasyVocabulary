@@ -13,7 +13,7 @@ namespace WebVersion.Controllers
         //TODO: Write template for pages
         // GET: User
         private static UserContext _userContext = new UserContext();
-     
+
         public ActionResult SignIn()
         {
             return View();
@@ -36,7 +36,7 @@ namespace WebVersion.Controllers
             }
             if (isAuto)
             {
-                
+
                 Session["User"] = findedUser;
                 return RedirectToAction("Index", "Vocabularies");
             }
@@ -88,6 +88,41 @@ namespace WebVersion.Controllers
         [HttpPost]
         public ActionResult Restore(String email)
         {
+            var users = _userContext.Users.ToList();
+            User accountUser = null;
+
+            foreach (var item in users)
+            {
+                if (item.Email == email)
+                {
+                    accountUser = new User();
+                    accountUser.Id = item.Id;
+                    accountUser.Nickname = item.Nickname;
+                    accountUser.Password = UserController.GeneratePassword();
+                    accountUser.Email = email;
+                }
+            }
+
+            if (accountUser != null)
+            {
+                bool result = UserController.RestoreUser(accountUser, _userContext);
+
+                if (result == false)
+                {
+                    Exceptions.IsError = 0;
+                    throw new Exception(Exceptions.ErrorMessage);
+                }
+                else
+                {
+                    Response.Write("<script>alert('Check your email');</script>");
+                }
+
+            }
+            else
+            {
+                throw new Exception("User doesn't exist accoring this email!");
+            }
+
 
             return RedirectToAction("Index", "Start");
         }
