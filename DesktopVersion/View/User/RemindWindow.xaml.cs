@@ -43,28 +43,21 @@ namespace DesktopVersion
 
                     if (accountUser != null)
                     {
-                        // Gmail SMTP server address
-                        SmtpServer oServer = new SmtpServer("smtp.gmail.com");
-                        // Using 587 port, you can also use 465 port
-                        oServer.Port = 587;
-                        oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
-                        oServer.User = "EasyTeamHelp@gmail.com";
-                        oServer.Password = "20002809ksoh"; //TODO: Hide it
-
-                        SmtpMail oMail = new SmtpMail("TryIt");
-                        oMail.From = oServer.User;
-                        oMail.To = accountUser.Email;
-                        oMail.Subject = "Restroring account";
-                        oMail.TextBody = "Your login: " + accountUser.Nickname + "\nYour new password: " + accountUser.Password +
-                            "\n\nRespectfully, \nEasy Team";
-
-                        SmtpClient oSmtp = new SmtpClient();
-                        oSmtp.SendMail(oServer, oMail);
-
-                        accountUser.Password = SecurePasswordHasher.Hash(accountUser.Password);
-                        UserController.UpdateUser(_userContext, accountUser);
-
-                        Close();
+                        bool result = UserController.RestoreUser(accountUser, _userContext);
+                        if(result == false)
+                        {
+                            Exceptions.IsError = 0;
+                            MessageBox.Show(Exceptions.ErrorMessage, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Check your email.");
+                            Close();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("User doesn't exist accoring this email!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }

@@ -136,10 +136,17 @@ namespace ConsoleVersion.Controllers
                 "\n\nRespectfully, \nEasy Team";
 
             SmtpClient oSmtp = new SmtpClient();
-            oSmtp.SendMail(oServer, oMail);
-
-            accountUser.Password = SecurePasswordHasher.Hash(accountUser.Password);
-            UpdateUser(userContext, accountUser);
+            try
+            {
+                oSmtp.SendMail(oServer, oMail);
+                accountUser.Password = SecurePasswordHasher.Hash(accountUser.Password);
+                UpdateUser(userContext, accountUser);
+            }
+            catch(Exception ex)
+            {
+                Exceptions.Catching(ex);
+                return false;
+            }
 
             return true;
         }
