@@ -101,13 +101,22 @@ namespace WebVersion.Controllers
             User valueSession = (User)Session["User"];
             IsUserAuth(valueSession);
 
+
             changedRow = VocabularyController.FindRow(choosedRow, Byte.Parse(key), _vocabularyContext);
-            if (changes.ForeignWord != null && changes.ForeignWord != "")
-                changedRow.ForeignWord = changes.ForeignWord;
-            if (changes.Transcription != null && changes.Transcription != "")
-                changedRow.Transcription = changes.Transcription;
-            if (changes.LocalWord != null && changes.LocalWord != "")
-                changedRow.LocalWord = changes.LocalWord;
+
+
+
+            if (changedRow != null)
+            {
+                if (changes.ForeignWord != null && changes.ForeignWord != "")
+                    changedRow.ForeignWord = changes.ForeignWord;
+                if (changes.Transcription != null && changes.Transcription != "")
+                    changedRow.Transcription = changes.Transcription;
+                if (changes.LocalWord != null && changes.LocalWord != "")
+                    changedRow.LocalWord = changes.LocalWord;
+            }
+            else
+                throw new Exception("This translate doesn't exist!");
 
             VocabularyController.UpdateRow(_vocabularyContext, changedRow);
             return RedirectToAction("Index", "Vocabularies");
